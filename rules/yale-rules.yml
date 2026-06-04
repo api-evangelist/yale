@@ -1,0 +1,47 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://lux.collections.yale.edu/content/technology
+rules:
+  yale-info-contact:
+    description: API info must include a contact pointing at the LUX technology page.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  yale-info-license:
+    description: LUX is published under Apache 2.0; the spec should declare a license.
+    severity: warn
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  yale-operation-id:
+    description: Every operation should declare an operationId.
+    severity: error
+    given: $.paths[*][*]
+    then:
+      field: operationId
+      function: truthy
+  yale-scope-enum:
+    description: The scope path parameter must constrain values to LUX discovery scopes.
+    severity: warn
+    given: $.components.parameters.Scope.schema
+    then:
+      field: enum
+      function: truthy
+  yale-jsonld-context:
+    description: Response object schemas should expose the JSON-LD @context property.
+    severity: info
+    given: $.components.schemas[?(@.properties)]
+    then:
+      function: defined
+  yale-server-https:
+    description: Servers must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"

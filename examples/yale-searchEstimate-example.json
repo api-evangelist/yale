@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://lux.collections.yale.edu/api/search-estimate/item?q={\"text\":\"dog\"}"
+  },
+  "response": {
+    "@context": "https://linked.art/ns/v1/search.json",
+    "id": "https://lux.collections.yale.edu/api/search-estimate/item?q=%7B%22text%22%3A%22dog%22%7D",
+    "type": "OrderedCollection",
+    "label": { "en": ["Objects"] },
+    "summary": { "en": ["Objects that match the search criteria"] },
+    "totalItems": 16640,
+    "first": {
+      "id": "https://lux.collections.yale.edu/api/search/item?q=%7B%22text%22%3A%22dog%22%7D&page=1",
+      "type": "OrderedCollectionPage"
+    },
+    "last": {
+      "id": "https://lux.collections.yale.edu/api/search/item?q=%7B%22text%22%3A%22dog%22%7D&page=832",
+      "type": "OrderedCollectionPage"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yale/main/json-structure/yale-orderedcollectionpage-structure.json",
+  "name": "LuxOrderedCollectionPage",
+  "description": "JSON Structure for a page of LUX search results (Linked Art OrderedCollectionPage).",
+  "type": "object",
+  "properties": {
+    "@context": { "type": "string" },
+    "id": { "type": "string" },
+    "type": { "type": "string" },
+    "partOf": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "totalItems": { "type": "int64" }
+      }
+    },
+    "orderedItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "required": ["id", "type"]
+      }
+    },
+    "next": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "prev": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    }
+  },
+  "required": ["id", "type", "orderedItems"]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yale/main/json-schema/yale-linkedartentity-schema.json",
+  "title": "LUX Linked Art Entity",
+  "description": "A Linked Art JSON-LD entity document returned by the LUX /data/{type}/{id} endpoint. Follows the CIDOC-CRM derived Linked Art model. Additional properties are permitted.",
+  "type": "object",
+  "required": ["id", "type"],
+  "additionalProperties": true,
+  "properties": {
+    "@context": { "type": "string", "format": "uri" },
+    "id": { "type": "string", "format": "uri" },
+    "type": { "type": "string" },
+    "_label": { "type": "string" },
+    "identified_by": { "type": "array", "items": { "type": "object" } },
+    "classified_as": { "type": "array", "items": { "type": "object" } },
+    "referred_to_by": { "type": "array", "items": { "type": "object" } },
+    "member_of": { "type": "array", "items": { "type": "object" } },
+    "equivalent": { "type": "array", "items": { "type": "object" } },
+    "subject_of": { "type": "array", "items": { "type": "object" } },
+    "representation": { "type": "array", "items": { "type": "object" } },
+    "shows": { "type": "array", "items": { "type": "object" } },
+    "dimension": { "type": "array", "items": { "type": "object" } },
+    "_links": { "type": "object" }
+  }
+}

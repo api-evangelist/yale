@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://lux.collections.yale.edu/data/object/fc789619-de64-449d-99ad-2e8eca039e4a"
+  },
+  "response": {
+    "@context": "https://linked.art/ns/v1/linked-art.json",
+    "id": "https://lux.collections.yale.edu/data/object/fc789619-de64-449d-99ad-2e8eca039e4a",
+    "type": "HumanMadeObject",
+    "_label": "Example object from Yale collections",
+    "identified_by": [
+      { "type": "Name", "content": "Example object from Yale collections" }
+    ],
+    "classified_as": [
+      { "id": "https://lux.collections.yale.edu/data/concept/example", "type": "Type" }
+    ],
+    "referred_to_by": [
+      { "type": "LinguisticObject", "content": "Descriptive note about the object." }
+    ],
+    "member_of": [
+      { "id": "https://lux.collections.yale.edu/data/set/example-set", "type": "Set" }
+    ],
+    "representation": [
+      { "id": "https://lux.collections.yale.edu/data/digital/example-image", "type": "DigitalObject" }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yale/main/json-schema/yale-orderedcollection-schema.json",
+  "title": "LUX OrderedCollection",
+  "description": "Linked Art OrderedCollection returned by the LUX search-estimate endpoint, summarizing a result set with a totalItems count.",
+  "type": "object",
+  "required": ["id", "type", "totalItems"],
+  "properties": {
+    "@context": { "type": "string", "format": "uri" },
+    "id": { "type": "string", "format": "uri" },
+    "type": { "type": "string", "const": "OrderedCollection" },
+    "label": { "$ref": "#/$defs/languageMap" },
+    "summary": { "$ref": "#/$defs/languageMap" },
+    "totalItems": { "type": "integer", "minimum": 0 },
+    "first": { "$ref": "#/$defs/pageRef" },
+    "last": { "$ref": "#/$defs/pageRef" }
+  },
+  "$defs": {
+    "languageMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "pageRef": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string" }
+      }
+    }
+  }
+}

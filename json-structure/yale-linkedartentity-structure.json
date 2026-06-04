@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yale/main/json-structure/yale-linkedartentity-structure.json",
+  "name": "LuxLinkedArtEntity",
+  "description": "JSON Structure for a LUX Linked Art JSON-LD entity document returned from /data/{type}/{id}.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "@context": { "type": "string" },
+    "id": { "type": "string" },
+    "type": { "type": "string" },
+    "_label": { "type": "string" },
+    "identified_by": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "classified_as": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "referred_to_by": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "member_of": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "equivalent": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "subject_of": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "representation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "shows": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "dimension": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+  },
+  "required": ["id", "type"]
+}

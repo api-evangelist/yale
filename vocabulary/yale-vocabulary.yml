@@ -1,0 +1,77 @@
+vocabulary:
+  name: LUX Yale Collections Discovery Vocabulary
+  description: >-
+    Controlled terms used by the LUX Yale Collections Discovery API. Terms reflect
+    the Linked Art data model, the LUX search grammar and the public middle-tier
+    endpoints, derived from the open-source LUX backend documentation and confirmed
+    against live API responses.
+  version: 1.0.0
+  terms:
+    - term: scope
+      definition: >-
+        A LUX discovery category used as a path segment that determines which kind
+        of entity a search, facet or related-list query targets.
+      tags: [search, parameter]
+    - term: item
+      definition: >-
+        The scope for physical and digital objects (Linked Art HumanMadeObject and
+        DigitalObject), Yale's most numerous record type.
+      tags: [scope, entity]
+    - term: work
+      definition: The scope for textual and visual works (Linked Art LinguisticObject / VisualItem).
+      tags: [scope, entity]
+    - term: agent
+      definition: The scope for people and organizations (Linked Art Person and Group).
+      tags: [scope, entity]
+    - term: place
+      definition: The scope for geographic places (Linked Art Place).
+      tags: [scope, entity]
+    - term: concept
+      definition: The scope for types, subjects and other concepts (Linked Art Type).
+      tags: [scope, entity]
+    - term: set
+      definition: The scope for collections and archival sets (Linked Art Set).
+      tags: [scope, entity]
+    - term: event
+      definition: The scope for events and activities (Linked Art Activity / Event).
+      tags: [scope, entity]
+    - term: OrderedCollection
+      definition: >-
+        A Linked Art container returned by search-estimate that summarizes a result
+        set and carries the totalItems count.
+      tags: [response, linked-art]
+    - term: OrderedCollectionPage
+      definition: >-
+        A Linked Art container returned by search/facets/related-list that holds one
+        page of orderedItems plus pagination links.
+      tags: [response, linked-art, pagination]
+    - term: orderedItems
+      definition: The array of entity references contained in an OrderedCollectionPage.
+      tags: [response, linked-art]
+    - term: totalItems
+      definition: The estimated count of records matching a query.
+      tags: [response]
+    - term: q
+      definition: >-
+        The query parameter accepting LUX JSON Grammar or String Grammar search
+        criteria.
+      tags: [parameter, search]
+    - term: HumanMadeObject
+      definition: >-
+        The Linked Art class for a physical object held in Yale's collections, the
+        default type for item-scope results.
+      tags: [entity, linked-art]
+    - term: identified_by
+      definition: Linked Art property carrying the names and identifiers of an entity.
+      tags: [linked-art, field]
+    - term: classified_as
+      definition: Linked Art property carrying the types and classifications of an entity.
+      tags: [linked-art, field]
+    - term: referred_to_by
+      definition: Linked Art property carrying descriptive statements about an entity.
+      tags: [linked-art, field]
+    - term: advanced-search-config
+      definition: >-
+        The configuration endpoint describing searchable terms by scope, search
+        options and stop words.
+      tags: [configuration, endpoint]

@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "la": "https://linked.art/ns/terms/",
+    "as": "https://www.w3.org/ns/activitystreams#",
+    "yale": "https://lux.collections.yale.edu/ns/terms/",
+    "@vocab": "https://lux.collections.yale.edu/ns/terms/",
+
+    "institution": {
+      "@id": "yale:institution",
+      "@type": "schema:CollegeOrUniversity"
+    },
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+
+    "id": "@id",
+    "type": "@type",
+    "label": "schema:name",
+    "summary": "schema:description",
+
+    "OrderedCollection": "as:OrderedCollection",
+    "OrderedCollectionPage": "as:OrderedCollectionPage",
+    "totalItems": { "@id": "as:totalItems", "@type": "schema:Integer" },
+    "orderedItems": { "@id": "as:items", "@container": "@list" },
+    "partOf": { "@id": "as:partOf", "@type": "@id" },
+    "first": { "@id": "as:first", "@type": "@id" },
+    "last": { "@id": "as:last", "@type": "@id" },
+    "next": { "@id": "as:next", "@type": "@id" },
+    "prev": { "@id": "as:prev", "@type": "@id" },
+
+    "HumanMadeObject": "la:HumanMadeObject",
+    "identified_by": { "@id": "la:identified_by", "@container": "@set" },
+    "classified_as": { "@id": "la:classified_as", "@container": "@set" },
+    "referred_to_by": { "@id": "la:referred_to_by", "@container": "@set" },
+    "member_of": { "@id": "la:member_of", "@container": "@set" },
+    "equivalent": { "@id": "la:equivalent", "@container": "@set" },
+    "subject_of": { "@id": "la:subject_of", "@container": "@set" },
+    "representation": { "@id": "la:representation", "@container": "@set" },
+    "shows": { "@id": "la:shows", "@container": "@set" },
+    "dimension": { "@id": "la:dimension", "@container": "@set" }
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "Yale University",
+  "url": "https://www.yale.edu/",
+  "description": "Yale University cross-collection discovery (LUX) API objects mapped to schema.org, ActivityStreams and Linked Art vocabularies."
+}

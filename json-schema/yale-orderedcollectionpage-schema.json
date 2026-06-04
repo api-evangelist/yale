@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/yale/main/json-schema/yale-orderedcollectionpage-schema.json",
+  "title": "LUX OrderedCollectionPage",
+  "description": "A single page of LUX search results in Linked Art JSON-LD, returned by the /api/search/{scope} endpoint.",
+  "type": "object",
+  "required": ["id", "type", "orderedItems"],
+  "properties": {
+    "@context": { "type": "string", "format": "uri" },
+    "id": { "type": "string", "format": "uri" },
+    "type": { "type": "string", "const": "OrderedCollectionPage" },
+    "partOf": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string" },
+        "label": { "$ref": "#/$defs/languageMap" },
+        "totalItems": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "orderedItems": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entityRef" }
+    },
+    "next": { "$ref": "#/$defs/pageRef" },
+    "prev": { "$ref": "#/$defs/pageRef" }
+  },
+  "$defs": {
+    "languageMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "entityRef": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string" }
+      }
+    },
+    "pageRef": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string" }
+      }
+    }
+  }
+}

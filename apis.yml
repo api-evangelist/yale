@@ -83,6 +83,18 @@ apis:
         url: https://github.com/project-lux
       - type: SourceCode
         url: https://github.com/project-lux
+      - type: OpenAPI
+        url: openapi/yale-lux.yaml
+      - type: x-json-schema
+        url: json-schema/yale-orderedcollectionpage-schema.json
+      - type: x-json-schema
+        url: json-schema/yale-linkedartentity-schema.json
+      - type: x-vocabulary
+        url: vocabulary/yale-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/yale-context.jsonld
+      - type: x-rules
+        url: rules/yale-rules.yml
   - aid: yale:iiif
     name: Yale Digital Collections IIIF
     description: >-
