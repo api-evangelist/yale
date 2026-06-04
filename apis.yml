@@ -1,0 +1,121 @@
+---
+aid: yale
+name: Yale University
+description: >-
+  Yale University is a private Ivy League research university in New Haven,
+  Connecticut, United States, ranked #17 in the QS World University Rankings
+  2025. Its public developer footprint centers on the Yale API Portal
+  (developers.yale.edu), which exposes enterprise (SOA) and portal APIs such as
+  the Courses Web Service and Buildings service behind an API key gated to
+  holders of a valid Yale netid. Yale also operates LUX, a large public
+  cross-collection discovery platform built on Linked Art / IIIF that serves
+  JSON-LD data and a search API across more than 41 million cultural-heritage
+  records, and publishes IIIF manifests for its digital library collections.
+  Source code for LUX and many library systems is openly available on GitHub.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/yale/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Library
+  - Cultural Heritage
+  - Linked Data
+  - United States
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: yale:courses
+    name: Courses Web Service v3
+    description: >-
+      Returns public information for course offerings (course sections) for a
+      given termCode and subjectCode, including titles, descriptions,
+      instructors, meeting times, prerequisites and distributional designations.
+      Responses are available in JSON or XML. Requires an API key obtained by
+      registering an application in the Yale Developer Portal (Yale netid
+      required).
+    humanURL: https://developers.yale.edu/courseswebservicev3
+    baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
+    tags: [ Courses, Catalog, Education, SOA ]
+    properties:
+      - type: Documentation
+        url: https://developers.yale.edu/courseswebservicev3
+      - type: SignUp
+        url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
+  - aid: yale:portal
+    name: Yale API Portal (Enterprise & Portal APIs)
+    description: >-
+      The Yale API Portal is the discovery hub for Yale's enterprise (SOA),
+      portal and vendor/third-party APIs. Portal APIs include Buildings (name
+      and location of Yale campus buildings), Courses, Course Subjects and
+      GatewayServiceMetrics. Access to the developer portal and API keys is
+      limited to individuals with a valid Yale netid.
+    humanURL: https://developers.yale.edu/api-documentation
+    tags: [ Catalog, Buildings, Enterprise, SOA, Education ]
+    properties:
+      - type: Documentation
+        url: https://developers.yale.edu/api-documentation
+      - type: DeveloperPortal
+        url: https://developers.yale.edu/
+      - type: SignUp
+        url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
+  - aid: yale:lux
+    name: LUX Yale Collections Discovery API
+    description: >-
+      LUX is Yale's public cross-collection discovery platform providing unified
+      access to more than 41 million records across Yale's museums, archives and
+      library collections. Built on the Linked Art data model with IIIF, LUX
+      serves entities as JSON-LD documents and exposes search and
+      search-estimate endpoints. Implemented on a MarkLogic backend; the source
+      code is open (Apache 2.0) under the project-lux GitHub organization.
+    humanURL: https://lux.collections.yale.edu/content/technology
+    baseURL: https://lux.collections.yale.edu/api
+    tags: [ Cultural Heritage, Linked Data, Linked Art, IIIF, JSON-LD, Search ]
+    properties:
+      - type: Documentation
+        url: https://lux.collections.yale.edu/content/technology
+      - type: GitHub
+        url: https://github.com/project-lux
+      - type: SourceCode
+        url: https://github.com/project-lux
+  - aid: yale:iiif
+    name: Yale Digital Collections IIIF
+    description: >-
+      Yale University Library publishes International Image Interoperability
+      Framework (IIIF) manifests for objects in its digital collections,
+      enabling interoperable viewing and reuse of digitized images and metadata
+      via standard IIIF Presentation and Image APIs.
+    humanURL: https://collections.library.yale.edu/
+    tags: [ IIIF, Library, Images, Digital Collections, Cultural Heritage ]
+    properties:
+      - type: Documentation
+        url: https://iiif.io/guides/guides/collections.library.yale.edu/
+      - type: GitHub
+        url: https://github.com/yalelibrary
+common:
+  - type: Website
+    url: https://www.yale.edu/
+  - type: DeveloperPortal
+    url: https://developers.yale.edu/
+  - type: GitHub
+    url: https://github.com/yalelibrary
+  - type: SourceCode
+    url: https://github.com/project-lux
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/yale-university/
+  - type: Plans
+    url: plans/yale-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/yale-rate-limits.yml
+  - type: FinOps
+    url: finops/yale-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

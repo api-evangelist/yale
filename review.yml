@@ -1,0 +1,64 @@
+---
+name: Yale University
+description: Yale University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/yale/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 4
+    summary: >-
+      Yale has a genuine, documented API surface. The Yale API Portal
+      (developers.yale.edu, HTTP 200) catalogs enterprise/SOA and portal APIs
+      including a documented Courses Web Service v3, Buildings, Course Subjects
+      and GatewayServiceMetrics, but key issuance and portal access are gated to
+      Yale netid holders, so endpoints cannot be exercised anonymously. The
+      Courses base URL returned HTTP 400 without a valid apikey and required
+      parameters, which is consistent with a live but authenticated gateway.
+      The strongest public footprint is LUX (lux.collections.yale.edu), whose
+      search and advanced-search-config API endpoints returned HTTP 200 and
+      whose source is open under the project-lux GitHub org; some LUX data
+      document endpoints returned transient 502/504 gateway errors at probe
+      time. IIIF manifests for digital collections and library source code on
+      GitHub are publicly available. No endpoints fabricated; all URLs below
+      were probed live.
+    endpoints:
+      - url: https://developers.yale.edu/
+        status: 200
+        note: Yale API Portal home (developer portal, netid-gated key issuance)
+      - url: https://developers.yale.edu/api-documentation
+        status: 200
+        note: API documentation hub listing enterprise/portal/vendor APIs
+      - url: https://developers.yale.edu/courseswebservicev3
+        status: 200
+        note: Courses Web Service v3 documentation page
+      - url: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
+        status: 400
+        note: Live SOA gateway; 400 without valid apikey/required params (gated)
+      - url: https://lux.collections.yale.edu/
+        status: 200
+        note: LUX collections discovery platform home
+      - url: https://lux.collections.yale.edu/api/advanced-search-config
+        status: 200
+        note: Public LUX advanced search configuration endpoint
+      - url: https://lux.collections.yale.edu/api/search-estimate/item
+        status: 200
+        note: Public LUX search-estimate endpoint (returned result for test query)
+      - url: https://lux.collections.yale.edu/data/object
+        status: 504
+        note: LUX data document path; transient gateway timeout at probe time
+      - url: https://collections.library.yale.edu/
+        status: 200
+        note: Yale digital collections (IIIF manifests served per object)
+      - url: https://github.com/project-lux
+        status: 200
+        note: Open-source LUX code (Apache 2.0), 22+ repositories
+      - url: https://github.com/yalelibrary
+        status: 200
+        note: Yale University Library GitHub org, 51 repositories
+      - url: https://www.yale.edu/
+        status: 200
+        note: Official university website
+      - url: https://www.linkedin.com/school/yale-university/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn anti-bot, page exists
