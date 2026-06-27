@@ -45,7 +45,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.yale.edu/courseswebservicev3
-      - type: SignUp
+      - type: Signup
         url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
   - aid: yale:portal
     name: Yale API Portal (Enterprise & Portal APIs)
@@ -62,7 +62,7 @@ apis:
         url: https://developers.yale.edu/api-documentation
       - type: DeveloperPortal
         url: https://developers.yale.edu/
-      - type: SignUp
+      - type: Signup
         url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
   - aid: yale:lux
     name: LUX Yale Collections Discovery API
