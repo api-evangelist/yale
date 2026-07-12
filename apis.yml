@@ -110,6 +110,8 @@ apis:
       - type: GitHub
         url: https://github.com/yalelibrary
 common:
+  - type: DomainSecurity
+    url: security/yale-domain-security.yml
   - type: Website
     url: https://www.yale.edu/
   - type: DeveloperPortal
@@ -128,6 +130,8 @@ common:
     url: finops/yale-finops.yml
   - type: Review
     url: review.yml
+  - url: https://news.yale.edu/news-rss
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
