@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: LUX Yale Collections Discovery Configuration Search API
+  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: LUX Yale Collections Discovery
+    url: https://lux.collections.yale.edu/content/technology
+servers:
+- url: https://lux.collections.yale.edu
+  description: LUX public production
+tags:
+- name: Search
+  description: Search and discovery across LUX scopes
+paths:
+  /api/search/{scope}:
+    get:
+      tags:
+      - Search
+      operationId: search
+      summary: Search a scope
+      description: Executes a query within a scope and returns a Linked Art OrderedCollectionPage of matching results in JSON-LD. The query may be expressed in LUX JSON Grammar or LUX String Grammar.
+      parameters:
+      - $ref: '#/components/parameters/Scope'
+      - name: q
+        in: query
+        required: true
+        description: Search criteria in LUX JSON Grammar or String Grammar.
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: 1-based page number.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: pageLength
+        in: query
+        required: false
+        description: Number of results per page.
+        schema:
+          type: integer
+          minimum: 1
+      - name: sort
+        in: query
+        required: false
+        description: Sort specification.
+        schema:
+          type: string
+      - name: filterResults
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: A page of search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderedCollectionPage'
+        '400':
+          description: Malformed query.
+  /api/search-estimate/{scope}:
+    get:
+      tags:
+      - Search
+      operationId: searchEstimate
+      summary: Estimate result count
+      description: Returns a Linked Art OrderedCollection containing the totalItems count of unfiltered results matching the query, without retrieving full documents.
+      parameters:
+      - $ref: '#/components/parameters/Scope'
+      - name: q
+        in: query
+        required: true
+        description: Search criteria in LUX JSON Grammar.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Result count estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderedCollection'
+        '400':
+          description: Malformed query.
+components:
+  schemas:
+    OrderedCollection:
+      type: object
+      description: A Linked Art OrderedCollection summarizing a result set.
+      properties:
+        '@context':
+          type: string
+          format: uri
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: OrderedCollection
+        label:
+          $ref: '#/components/schemas/LanguageMap'
+        summary:
+          $ref: '#/components/schemas/LanguageMap'
+        totalItems:
+          type: integer
+        first:
+          $ref: '#/components/schemas/CollectionPageRef'
+        last:
+          $ref: '#/components/schemas/CollectionPageRef'
+      required:
+      - id
+      - type
+      - totalItems
+    EntityRef:
+      type: object
+      description: A reference to a LUX entity returned within search results.
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: HumanMadeObject
+      required:
+      - id
+      - type
+    OrderedCollectionPage:
+      type: object
+      description: A single page of a Linked Art OrderedCollection.
+      properties:
+        '@context':
+          type: string
+          format: uri
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: OrderedCollectionPage
+        partOf:
+          $ref: '#/components/schemas/OrderedCollection'
+        orderedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        next:
+          $ref: '#/components/schemas/CollectionPageRef'
+        prev:
+          $ref: '#/components/schemas/CollectionPageRef'
+      required:
+      - id
+      - type
+      - orderedItems
+    LanguageMap:
+      type: object
+      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    CollectionPageRef:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: OrderedCollectionPage
+      required:
+      - id
+  parameters:
+    Scope:
+      name: scope
+      in: path
+      required: true
+      description: The discovery scope to query. LUX scopes map to the major Linked Art entity categories.
+      schema:
+        type: string
+        enum:
+        - item
+        - work
+        - agent
+        - place
+        - concept
+        - set
+        - event

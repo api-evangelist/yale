@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: LUX Yale Collections Discovery Configuration API
+  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: LUX Yale Collections Discovery
+    url: https://lux.collections.yale.edu/content/technology
+servers:
+- url: https://lux.collections.yale.edu
+  description: LUX public production
+tags:
+- name: Configuration
+  description: Search configuration metadata
+paths:
+  /api/advanced-search-config:
+    get:
+      tags:
+      - Configuration
+      operationId: advancedSearchConfig
+      summary: Fetch advanced search configuration
+      description: Returns the advanced search configuration describing searchable terms by scope, search options and stop words.
+      responses:
+        '200':
+          description: Advanced search configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdvancedSearchConfig'
+components:
+  schemas:
+    AdvancedSearchConfig:
+      type: object
+      description: Advanced search configuration metadata.
+      properties:
+        terms:
+          type: object
+          description: Searchable terms organized by scope.
+        options:
+          type: object
+          description: Allowed and default search options.
+        stopWords:
+          type: array
+          items:
+            type: string
+      required:
+      - terms
+      - options
