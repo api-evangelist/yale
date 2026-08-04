@@ -1,0 +1,22 @@
+{
+  "provider": "yale",
+  "sources": [
+    "yale-configuration-api-openapi.yml",
+    "yale-documents-api-openapi.yml",
+    "yale-facets-api-openapi.yml",
+    "yale-related-api-openapi.yml",
+    "yale-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "yale-configuration-api-openapi.yml",
+    "yale-documents-api-openapi.yml",
+    "yale-facets-api-openapi.yml",
+    "yale-related-api-openapi.yml",
+    "yale-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
