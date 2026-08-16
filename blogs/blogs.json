@@ -5,10 +5,10 @@
       "source": "https://news.yale.edu/news-rss",
       "feed_url": "https://news.yale.edu/news-rss",
       "title": "",
-      "saved": 1,
+      "saved": 10,
       "method": "feed"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
-  "post_count": 61
+  "fetched": "2026-08-15T12:11:08Z",
+  "post_count": 71
 }
