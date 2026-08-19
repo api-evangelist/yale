@@ -1,17 +1,35 @@
 ---
 aid: yale
 name: Yale University
+x-type: university
+x-category: Private Research University
 description: >-
-  Yale University is a private Ivy League research university in New Haven,
-  Connecticut, United States, ranked #17 in the QS World University Rankings
-  2025. Its public developer footprint centers on the Yale API Portal
-  (developers.yale.edu), which exposes enterprise (SOA) and portal APIs such as
-  the Courses Web Service and Buildings service behind an API key gated to
-  holders of a valid Yale netid. Yale also operates LUX, a large public
-  cross-collection discovery platform built on Linked Art / IIIF that serves
-  JSON-LD data and a search API across more than 41 million cultural-heritage
-  records, and publishes IIIF manifests for its digital library collections.
-  Source code for LUX and many library systems is openly available on GitHub.
+  Yale University is a private Ivy League research university in New Haven, Connecticut, United
+  States, ranked #16 in the QS World University Rankings. Its programmable footprint is real but
+  sharply bifurcated, and it is one of the few institutions in this cohort that operates its own
+  contracts rather than only buying them. On the open side Yale runs LUX (lux.collections.yale.edu),
+  a cross-collection discovery platform serving Linked Art JSON-LD over more than 41 million
+  cultural-heritage records, built and published openly by Yale's own project-lux engineering
+  organization; Yale Dataverse (dataverse.yale.edu), a self-hosted research-data repository on
+  Yale's own AWS infrastructure minting DOIs under Yale's own DataCite prefix 10.60600; IIIF
+  Presentation 3.0 manifests from Yale University Library Digital Collections; and a signed SAML 2.0
+  Shibboleth identity-provider metadata document registered in InCommon. All four were probed live
+  and answer anonymously.
+
+  On the closed side, developers.yale.edu is a genuine institution-operated developer portal
+  documenting eleven Enterprise (SOA) services and four Portal APIs — Buildings, Courses, Course
+  Subjects, GatewayServiceMetrics — but Yale's own pages describe these as internal and private:
+  the SOA tier uses basic authentication via a provisioned service account, and a Portal API key can
+  only be requested by someone holding a valid Yale NetID. The gateway at gw.its.yale.edu is live and
+  answers an anonymous call with "Invalid API Key", so the surface exists and is simply not open. An
+  earlier profile of this repository described the Courses Web Service as returning "public
+  information"; that is corrected here.
+
+  Two further surfaces carry Yale's name but not Yale's engineering and are recorded as tenant
+  relationships rather than as Yale contracts: EliScholar (elischolar.library.yale.edu), whose
+  OAI-PMH endpoint is live but whose Identify response gives an Elsevier bepress Digital Commons
+  admin contact, and the course catalog at courses.yale.edu / catalog.yale.edu, which is a Leepfrog
+  CourseLeaf tenancy. Yale publishes no open-data portal, no llms.txt and no security.txt.
 type: Index
 accessModel:
   pricing: free
@@ -30,221 +48,483 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/yale.png
 url: https://raw.githubusercontent.com/api-evangelist/yale/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
+  - United States
+  - Ivy League
   - Research
+  - Research Data
+  - Research Repository
+  - Identity Federation
   - Library
   - Cultural Heritage
   - Linked Data
-  - United States
+  - IIIF
+  - Course Catalog
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-19'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: institution_operated_surfaces_verified_gated_administrative_tier
+  detail: >-
+    Yale is not a thin profile. Four institution-operated surfaces were probed and answered
+    anonymously — LUX search and configuration, the Yale Dataverse REST API, a Digital Collections
+    IIIF Presentation 3.0 manifest, and the Shibboleth IdP SAML metadata — and each is described by
+    a contract in openapi/ with its operator settled. Three limits on this coverage are recorded
+    honestly rather than papered over. First, Yale's administrative estate (eleven Enterprise SOA
+    services and four Portal APIs) is documented in public but gated behind a Yale NetID, so it is
+    inventoried from Yale's own documentation and never described as callable. Second, the Blacklight
+    JSON surface at collections.library.yale.edu/catalog.json returns an empty HTTP 202 edge
+    challenge to automated requests even with a browser User-Agent, so it is recorded as blocked at
+    the edge — a fact about our access, not about Yale. Third, LUX serves an identical 4200-byte
+    single-page-app shell for every /content/ route including a deliberately nonsensical one, so LUX
+    content pages cannot be graded by status code and are carried on the strength of the API's own
+    declared contact URL plus the openly published project-lux source.
+  evidence:
+  - url: https://lux.collections.yale.edu/api/search-estimate/item?q=%7B%22text%22%3A%22gold%22%7D
+    status: 200
+  - url: https://lux.collections.yale.edu/api/advanced-search-config
+    status: 200
+  - url: https://lux.collections.yale.edu/api/tenant-status
+    status: 200
+  - url: https://dataverse.yale.edu/api/info/version
+    status: 200
+  - url: https://dataverse.yale.edu/api/search?q=yale
+    status: 200
+  - url: https://dataverse.yale.edu/oai?verb=Identify
+    status: 503
+  - url: https://collections.library.yale.edu/manifests/2055095
+    status: 200
+  - url: https://collections.library.yale.edu/catalog.json?q=test
+    status: 202
+  - url: https://auth.yale.edu/idp/shibboleth
+    status: 200
+  - url: https://mdq.incommon.org/entities/https%3A%2F%2Fauth.yale.edu%2Fidp%2Fshibboleth
+    status: 200
+  - url: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
+    status: 400
+  - url: https://developers.yale.edu/api-documentation/enterprise-soa-services
+    status: 200
+  - url: https://elischolar.library.yale.edu/do/oai/?verb=Identify
+    status: 200
+  - url: https://www.yale.edu/llms.txt
+    status: 404
+  - url: https://www.yale.edu/.well-known/security.txt
+    status: 404
+  generated: '2026-08-19'
+  method: probed
 apis:
-- aid: yale:courses
-  name: Courses Web Service v3
+- aid: yale:yale-search-api
+  name: LUX Collections Discovery — Search API
+  x-operator: institution
   description: >-
-    Returns public information for course offerings (course sections) for a given termCode and subjectCode,
-    including titles, descriptions, instructors, meeting times, prerequisites and distributional designations.
-    Responses are available in JSON or XML. Requires an API key obtained by registering an application
-    in the Yale Developer Portal (Yale netid required).
+    Search and discovery across LUX scopes, returning Linked Art OrderedCollectionPage documents in
+    JSON-LD. LUX is Yale's own platform: the frontend, middle tier, Varnish cache, MarkLogic backend
+    and data pipeline are all published by the project-lux GitHub organization, and the host is under
+    Yale's registrable domain. Verified 200 on 2026-08-19 with q={"text":"gold"} returning 53,387
+    matching objects.
+  humanURL: https://lux.collections.yale.edu/
+  baseURL: https://lux.collections.yale.edu
+  tags:
+  - Search
+  - Linked Art
+  - Cultural Heritage
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-search-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md
+  - type: GitHub
+    url: https://github.com/project-lux
+  - type: SourceCode
+    url: https://github.com/project-lux/lux-middletier
+  - type: x-json-schema
+    url: json-schema/yale-orderedcollectionpage-schema.json
+  - type: x-json-schema
+    url: json-schema/yale-linkedartentity-schema.json
+  - type: x-vocabulary
+    url: vocabulary/yale-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/yale-context.jsonld
+  - type: x-rules
+    url: rules/yale-rules.yml
+  - type: x-examples
+    url: examples/yale-search-example.json
+- aid: yale:yale-documents-api
+  name: LUX Collections Discovery — Documents API
+  x-operator: institution
+  description: >-
+    Retrieves a single entity from LUX as a Linked Art JSON-LD document by type and identifier.
+    Institution-operated on lux.collections.yale.edu.
+  humanURL: https://lux.collections.yale.edu/
+  baseURL: https://lux.collections.yale.edu
+  tags:
+  - Documents
+  - Linked Art
+  - JSON-LD
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-documents-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md
+  - type: GitHub
+    url: https://github.com/project-lux
+  - type: SourceCode
+    url: https://github.com/project-lux/lux-middletier
+  - type: x-json-schema
+    url: json-schema/yale-linkedartentity-schema.json
+  - type: x-vocabulary
+    url: vocabulary/yale-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/yale-context.jsonld
+  - type: x-rules
+    url: rules/yale-rules.yml
+  - type: x-examples
+    url: examples/yale-getDocument-example.json
+- aid: yale:yale-facets-api
+  name: LUX Collections Discovery — Facets API
+  x-operator: institution
+  description: >-
+    Faceted aggregation over LUX search results, returning an OrderedCollectionPage of facet values
+    and occurrence counts. Institution-operated on lux.collections.yale.edu.
+  humanURL: https://lux.collections.yale.edu/
+  baseURL: https://lux.collections.yale.edu
+  tags:
+  - Facets
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-facets-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md
+  - type: GitHub
+    url: https://github.com/project-lux
+  - type: SourceCode
+    url: https://github.com/project-lux/lux-middletier
+  - type: x-json-schema
+    url: json-schema/yale-orderedcollectionpage-schema.json
+  - type: x-vocabulary
+    url: vocabulary/yale-vocabulary.yml
+  - type: x-rules
+    url: rules/yale-rules.yml
+- aid: yale:yale-related-api
+  name: LUX Collections Discovery — Related API
+  x-operator: institution
+  description: >-
+    Related-entity discovery across LUX, returning an OrderedCollectionPage of documents connected to
+    a given URI. Institution-operated on lux.collections.yale.edu.
+  humanURL: https://lux.collections.yale.edu/
+  baseURL: https://lux.collections.yale.edu
+  tags:
+  - Related
+  - Linked Data
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-related-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md
+  - type: GitHub
+    url: https://github.com/project-lux
+  - type: SourceCode
+    url: https://github.com/project-lux/lux-middletier
+  - type: x-json-schema
+    url: json-schema/yale-orderedcollectionpage-schema.json
+  - type: x-vocabulary
+    url: vocabulary/yale-vocabulary.yml
+  - type: x-rules
+    url: rules/yale-rules.yml
+- aid: yale:yale-configuration-api
+  name: LUX Collections Discovery — Configuration API
+  x-operator: institution
+  description: >-
+    Advanced-search configuration metadata for LUX, describing searchable terms by scope, search
+    options and stop words. Verified 200 returning 43,502 bytes of JSON on 2026-08-19.
+  humanURL: https://lux.collections.yale.edu/
+  baseURL: https://lux.collections.yale.edu
+  tags:
+  - Configuration
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md
+  - type: GitHub
+    url: https://github.com/project-lux
+  - type: SourceCode
+    url: https://github.com/project-lux/lux-middletier
+  - type: x-vocabulary
+    url: vocabulary/yale-vocabulary.yml
+  - type: x-rules
+    url: rules/yale-rules.yml
+- aid: yale:dataverse
+  name: Yale Dataverse Repository API
+  x-operator: institution
+  description: >-
+    Yale University's institutional research-data repository, self-hosted on Yale's own AWS
+    infrastructure under Yale's registrable domain, running open-source Dataverse 6.10.1 with 279
+    published datasets across sub-dataverses including the ISPS Data Archive. Published content reads
+    anonymously; deposit requires a NetID-bound API token. Yale mints DOIs under its own DataCite
+    prefix 10.60600, and those DOIs resolve back to dataverse.yale.edu.
+
+    OPERATOR NOTE. The Dataverse software generates a complete OpenAPI document at
+    dataverse.yale.edu/openapi. That document is titled "Dataverse API", describes "Open source
+    research data repository software", and is identical on every Dataverse installation worldwide —
+    it is the software project's contract, not Yale's engineering, and it is deliberately not saved
+    here. The contract in openapi/ describes only endpoints actually called against Yale's
+    deployment, with Yale's server URL. Yale operates the deployment and owns the data; IQSS at
+    Harvard authored the API design.
+  humanURL: https://dataverse.yale.edu/
+  baseURL: https://dataverse.yale.edu
+  tags:
+  - Research Data
+  - Research Repository
+  - Dataverse
+  - Open Data
+  - DataCite
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-dataverse-openapi.yml
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/
+  - type: x-examples
+    url: examples/yale-dataverse-search-example.json
+  - type: x-examples
+    url: examples/yale-dataverse-info-version-example.json
+  - type: x-conformance
+    url: conformance/yale-domain-standards.yml
+- aid: yale:iiif
+  name: Yale University Library Digital Collections IIIF
+  x-operator: institution
+  description: >-
+    IIIF Presentation 3.0 manifests for Yale University Library's digitized collections. The service
+    is institution-operated — the host resolves to an AWS load balancer in Yale's own account
+    (alb-yul-dc-prod) and the entire stack is openly published by the yalelibrary GitHub organization
+    (yul-dc-blacklight, yul-dc-management, yul-dc-iiif-imageserver). A manifest fetch returned 200
+    with 1.4 MB of IIIF Presentation 3.0 JSON on 2026-08-19. Note that Yale's robots.txt disallows
+    /manifests/ for all user agents, and the Blacklight JSON surface at /catalog.json answers
+    automated requests with an empty HTTP 202 edge challenge.
+  humanURL: https://collections.library.yale.edu/
+  baseURL: https://collections.library.yale.edu
+  tags:
+  - IIIF
+  - Library
+  - Digital Collections
+  - Cultural Heritage
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-digital-collections-iiif-openapi.yml
+  - type: Documentation
+    url: https://iiif.io/guides/guides/collections.library.yale.edu/
+  - type: GitHub
+    url: https://github.com/yalelibrary
+  - type: SourceCode
+    url: https://github.com/yalelibrary/yul-dc-camerata
+  - type: x-examples
+    url: examples/yale-iiif-manifest-example.json
+- aid: yale:identity-federation
+  name: Yale University Identity Federation Metadata
+  x-operator: institution
+  description: >-
+    Yale operates a Shibboleth Identity Provider at auth.yale.edu and publishes a signed SAML 2.0
+    EntityDescriptor for entityID https://auth.yale.edu/idp/shibboleth, unauthenticated, declaring
+    OrganizationName "Yale University", shibmd:Scope "yale.edu" and SingleSignOnService endpoints for
+    the Shibboleth 1.0, SAML 1.1 and SAML 2.0 profiles. The same entity is registered in InCommon
+    (registrationAuthority https://incommon.org) and retrievable from InCommon's per-entity metadata
+    query service, which carries it into eduGAIN. The host resolves inside Yale's own AWS identity
+    estate. This is not a REST API and was never meant to be one — it is catalogued because it is a
+    verified, machine-readable, unambiguously institution-operated surface, and it is the artifact
+    universities publish most consistently and catalog least often.
+  humanURL: https://its.yale.edu/
+  baseURL: https://auth.yale.edu
+  tags:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - InCommon
+  properties:
+  - type: OpenAPI
+    url: openapi/yale-identity-federation-openapi.yml
+  - type: Documentation
+    url: https://mdq.incommon.org/entities/https%3A%2F%2Fauth.yale.edu%2Fidp%2Fshibboleth
+  - type: x-examples
+    url: examples/yale-shibboleth-idp-metadata-example.xml
+  - type: x-conformance
+    url: conformance/yale-domain-standards.yml
+- aid: yale:portal
+  name: Yale API Portal — Portal APIs
+  x-operator: institution
+  description: >-
+    Yale's institution-operated developer portal documents four Portal APIs — Buildings (name and
+    location of Yale campus buildings), Courses, Course Subjects and GatewayServiceMetrics. Yale's
+    own page calls these INTERNAL APIs: a key is issued only after registering an application in the
+    Developer Portal, and portal access requires a valid Yale NetID. The gateway is live — an
+    anonymous call to the Courses Web Service v3 returned HTTP 400 with the body "Invalid API Key" —
+    but no operation here is publicly callable, so no contract is claimed for it.
+  humanURL: https://developers.yale.edu/api-documentation/portal-apis
+  baseURL: https://gw.its.yale.edu/soa-gateway
+  tags:
+  - Course Catalog
+  - Buildings
+  - Campus
+  - Gated
+  properties:
+  - type: Documentation
+    url: https://developers.yale.edu/api-documentation/portal-apis
+  - type: DeveloperPortal
+    url: https://developers.yale.edu/
+  - type: Signup
+    url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
+  - type: x-authentication
+    url: authentication/yale-authentication.yml
+- aid: yale:courses
+  name: Yale Courses Web Service v3
+  x-operator: institution
+  description: >-
+    Returns course-offering information for a given termCode and subjectCode — titles, descriptions,
+    instructors, meeting times, prerequisites and distributional designations — in JSON or XML. Live
+    and gated: an anonymous request to the documented endpoint returned HTTP 400 "Invalid API Key" on
+    2026-08-19. A key requires registering an application in the Yale Developer Portal, which
+    requires a Yale NetID. The previous profile of this repository described the service as returning
+    "public information"; the payload may be public information but the surface is not public access,
+    and that is corrected here.
   humanURL: https://developers.yale.edu/courseswebservicev3
   baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
   tags:
+  - Course Catalog
   - Courses
-  - Catalog
-  - Education
-  - SOA
+  - Registrar
+  - Gated
   properties:
   - type: Documentation
     url: https://developers.yale.edu/courseswebservicev3
   - type: Signup
     url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
-- aid: yale:portal
-  name: Yale API Portal (Enterprise & Portal APIs)
+  - type: x-authentication
+    url: authentication/yale-authentication.yml
+- aid: yale:enterprise-soa
+  name: Yale Enterprise (SOA) Services
+  x-operator: institution
   description: >-
-    The Yale API Portal is the discovery hub for Yale's enterprise (SOA), portal and vendor/third-party
-    APIs. Portal APIs include Buildings (name and location of Yale campus buildings), Courses, Course
-    Subjects and GatewayServiceMetrics. Access to the developer portal and API keys is limited to individuals
-    with a valid Yale netid.
-  humanURL: https://developers.yale.edu/api-documentation
+    Eleven services delivered by Yale's Integration Competency Center covering Yale identities
+    (People Hub — PeopleService, GetPeopleService, LimitedPeopleService, SearchByIndividual,
+    GetAppointmentService, GetChangesService), Chart of Accounts (COAValidator in REST and SOAP,
+    COASegmentService, GetRoles) and Workday Supervisory Organizations (GetSupervisoryOrgs). Yale
+    describes these as private APIs using basic authentication via a service account under specific
+    request and data-governance policies. Catalogued from Yale's own public documentation as an
+    inventory of the institution's integration estate; none is publicly callable and no contract is
+    claimed.
+  humanURL: https://developers.yale.edu/api-documentation/enterprise-soa-services
   tags:
-  - Catalog
-  - Buildings
   - Enterprise
   - SOA
-  - Education
+  - Identity
+  - Finance
+  - Gated
   properties:
   - type: Documentation
-    url: https://developers.yale.edu/api-documentation
+    url: https://developers.yale.edu/api-documentation/enterprise-soa-services
   - type: DeveloperPortal
     url: https://developers.yale.edu/
-  - type: Signup
-    url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
-- aid: yale:iiif
-  name: Yale Digital Collections IIIF
+  - type: x-authentication
+    url: authentication/yale-authentication.yml
+- aid: yale:elischolar
+  name: EliScholar OAI-PMH (bepress Digital Commons tenancy)
+  x-operator: tenant
   description: >-
-    Yale University Library publishes International Image Interoperability Framework (IIIF) manifests
-    for objects in its digital collections, enabling interoperable viewing and reuse of digitized images
-    and metadata via standard IIIF Presentation and Image APIs.
-  humanURL: https://collections.library.yale.edu/
+    EliScholar is Yale's digital platform for scholarly publishing, and its OAI-PMH endpoint is live
+    — Identify returned protocol version 2.0 with repositoryName "EliScholar – A Digital Platform for
+    Scholarly Publishing at Yale" and an earliest datestamp of 2000-01-19, and ListSets enumerates
+    Yale collections such as babylonian, arch2_theses and archipelagosjournal.
+
+    RECORDED AS TENANT, NOT INSTITUTION. The host elischolar.library.yale.edu is a CNAME to
+    dcyalelib.bepress.com, and the Identify response gives adminEmail dc-support@elsevier.com. The
+    content, the collection policy and the institutional identity are Yale's; the protocol
+    implementation and the operations are Elsevier's bepress Digital Commons. This is a real and
+    valuable institutional fact — it is one of the few genuinely harvestable surfaces Yale's name
+    sits on — so the relationship is recorded rather than deleted, and the vendor's generic contract
+    is not saved under Yale's slug.
+  humanURL: https://elischolar.library.yale.edu/
+  baseURL: https://elischolar.library.yale.edu/do/oai/
   tags:
-  - IIIF
-  - Library
-  - Images
-  - Digital Collections
-  - Cultural Heritage
+  - OAI-PMH
+  - Research Repository
+  - Scholarly Publishing
+  - Tenant
   properties:
   - type: Documentation
-    url: https://iiif.io/guides/guides/collections.library.yale.edu/
-  - type: GitHub
-    url: https://github.com/yalelibrary
-- aid: yale:yale-configuration-api
-  name: Yale University Configuration API
-  description: Search configuration metadata
-  humanURL: https://developers.yale.edu/courseswebservicev3
-  baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
+    url: https://elischolar.library.yale.edu/
+  - type: x-examples
+    url: examples/yale-elischolar-oaipmh-identify-example.xml
+  - type: x-conformance
+    url: conformance/yale-domain-standards.yml
+- aid: yale:course-catalog
+  name: Yale Course Search and University Publications (CourseLeaf tenancy)
+  x-operator: tenant
+  description: >-
+    Yale Course Search (courses.yale.edu) and the Yale University Publications bulletin
+    (catalog.yale.edu) are the institution's public course-catalog surfaces. Both are Leepfrog
+    CourseLeaf tenancies — courses.yale.edu is a CNAME to yale-fs.courseleaf.com and catalog.yale.edu
+    to yale-public.courseleaf.com. The catalog data is Yale's and the surface carries Yale's identity,
+    but the platform, the software and any API belong to Leepfrog. No machine-readable contract is
+    saved under Yale's slug for it.
+  humanURL: https://courses.yale.edu/
+  baseURL: https://courses.yale.edu
   tags:
-  - Configuration
+  - Course Catalog
+  - Registrar
+  - Tenant
   properties:
-  - type: OpenAPI
-    url: openapi/yale-configuration-api-openapi.yml
   - type: Documentation
-    url: https://lux.collections.yale.edu/content/technology
-  - type: GitHub
-    url: https://github.com/project-lux
-  - type: SourceCode
-    url: https://github.com/project-lux
-  - type: x-json-schema
-    url: json-schema/yale-orderedcollectionpage-schema.json
-  - type: x-json-schema
-    url: json-schema/yale-linkedartentity-schema.json
-  - type: x-vocabulary
-    url: vocabulary/yale-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/yale-context.jsonld
-  - type: x-rules
-    url: rules/yale-rules.yml
-- aid: yale:yale-documents-api
-  name: Yale University Documents API
-  description: Linked Art JSON-LD document retrieval
-  humanURL: https://developers.yale.edu/courseswebservicev3
-  baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
-  tags:
-  - Documents
-  properties:
-  - type: OpenAPI
-    url: openapi/yale-documents-api-openapi.yml
-  - type: Documentation
-    url: https://lux.collections.yale.edu/content/technology
-  - type: GitHub
-    url: https://github.com/project-lux
-  - type: SourceCode
-    url: https://github.com/project-lux
-  - type: x-json-schema
-    url: json-schema/yale-orderedcollectionpage-schema.json
-  - type: x-json-schema
-    url: json-schema/yale-linkedartentity-schema.json
-  - type: x-vocabulary
-    url: vocabulary/yale-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/yale-context.jsonld
-  - type: x-rules
-    url: rules/yale-rules.yml
-- aid: yale:yale-facets-api
-  name: Yale University Facets API
-  description: Faceted aggregation over search results
-  humanURL: https://developers.yale.edu/courseswebservicev3
-  baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
-  tags:
-  - Facets
-  properties:
-  - type: OpenAPI
-    url: openapi/yale-facets-api-openapi.yml
-  - type: Documentation
-    url: https://lux.collections.yale.edu/content/technology
-  - type: GitHub
-    url: https://github.com/project-lux
-  - type: SourceCode
-    url: https://github.com/project-lux
-  - type: x-json-schema
-    url: json-schema/yale-orderedcollectionpage-schema.json
-  - type: x-json-schema
-    url: json-schema/yale-linkedartentity-schema.json
-  - type: x-vocabulary
-    url: vocabulary/yale-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/yale-context.jsonld
-  - type: x-rules
-    url: rules/yale-rules.yml
-- aid: yale:yale-related-api
-  name: Yale University Related API
-  description: Related entity discovery
-  humanURL: https://developers.yale.edu/courseswebservicev3
-  baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
-  tags:
-  - Related
-  properties:
-  - type: OpenAPI
-    url: openapi/yale-related-api-openapi.yml
-  - type: Documentation
-    url: https://lux.collections.yale.edu/content/technology
-  - type: GitHub
-    url: https://github.com/project-lux
-  - type: SourceCode
-    url: https://github.com/project-lux
-  - type: x-json-schema
-    url: json-schema/yale-orderedcollectionpage-schema.json
-  - type: x-json-schema
-    url: json-schema/yale-linkedartentity-schema.json
-  - type: x-vocabulary
-    url: vocabulary/yale-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/yale-context.jsonld
-  - type: x-rules
-    url: rules/yale-rules.yml
-- aid: yale:yale-search-api
-  name: Yale University Search API
-  description: Search and discovery across LUX scopes
-  humanURL: https://developers.yale.edu/courseswebservicev3
-  baseURL: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
-  tags:
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/yale-search-api-openapi.yml
-  - type: Documentation
-    url: https://lux.collections.yale.edu/content/technology
-  - type: GitHub
-    url: https://github.com/project-lux
-  - type: SourceCode
-    url: https://github.com/project-lux
-  - type: x-json-schema
-    url: json-schema/yale-orderedcollectionpage-schema.json
-  - type: x-json-schema
-    url: json-schema/yale-linkedartentity-schema.json
-  - type: x-vocabulary
-    url: vocabulary/yale-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/yale-context.jsonld
-  - type: x-rules
-    url: rules/yale-rules.yml
+    url: https://courses.yale.edu/
+  - type: x-alternate
+    url: https://catalog.yale.edu/
 common:
-  - type: AgenticAccess
-    url: agentic-access/yale-agentic-access.yml
-  - type: DomainSecurity
-    url: security/yale-domain-security.yml
   - type: Website
     url: https://www.yale.edu/
   - type: DeveloperPortal
     url: https://developers.yale.edu/
+  - type: Documentation
+    url: https://developers.yale.edu/api-documentation
+  - type: APIReference
+    url: https://developers.yale.edu/api-documentation/portal-apis
+  - type: Support
+    url: https://developers.yale.edu/frequently-asked-questions
+  - type: PrivacyPolicy
+    url: https://www.yale.edu/privacy-policy
+  - type: TermsOfService
+    url: https://your.yale.edu/policies-procedures
+  - type: GitHubOrganization
+    url: https://github.com/yalelibrary
   - type: GitHub
     url: https://github.com/yalelibrary
   - type: SourceCode
     url: https://github.com/project-lux
+  - type: ResearchRepository
+    url: https://dataverse.yale.edu/
+  - type: LibraryCatalog
+    url: https://collections.library.yale.edu/
+  - type: CourseCatalog
+    url: https://courses.yale.edu/
+  - type: IdentityFederation
+    url: https://auth.yale.edu/idp/shibboleth
+  - type: ResearchComputing
+    url: https://research.computing.yale.edu/
+  - type: AIPolicy
+    url: https://ai.yale.edu/
+  - type: AITooling
+    url: https://poorvucenter.yale.edu/AIguidance
   - type: LinkedIn
     url: https://www.linkedin.com/school/yale-university/
+  - type: Blog
+    url: https://news.yale.edu/news-rss
+  - type: AgenticAccess
+    url: agentic-access/yale-agentic-access.yml
+  - type: DomainSecurity
+    url: security/yale-domain-security.yml
   - type: Plans
     url: plans/yale-plans-pricing.yml
   - type: RateLimits
@@ -253,8 +533,16 @@ common:
     url: finops/yale-finops.yml
   - type: Review
     url: review.yml
-  - url: https://news.yale.edu/news-rss
-    type: Blog
+  - type: x-authentication
+    url: authentication/yale-authentication.yml
+  - type: x-scopes
+    url: scopes/yale-scopes.yml
+  - type: x-errors
+    url: errors/yale-errors.yml
+  - type: x-lifecycle
+    url: lifecycle/yale-lifecycle.yml
+  - type: x-conformance
+    url: conformance/yale-domain-standards.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
