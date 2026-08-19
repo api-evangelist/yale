@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LUX Yale Collections Discovery Configuration Documents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Linked Art document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lux.collections.yale.edu/data/:type/:id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Entity type segment (e.g. object, work, person, group, place, concept, set, event)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Entity identifier (UUID)."
+              }
+            ]
+          },
+          "docs": "Retrieves a single entity as a Linked Art JSON-LD document by its type and identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "4c43107e-0587-4b75-b62f-e6bfa8510071",
+      "name": "Configuration",
+      "description": {
+        "content": "Search configuration metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5b3d11f-a5f2-480c-add5-fa6cd0af382c",
+          "name": "Fetch advanced search configuration",
+          "request": {
+            "name": "Fetch advanced search configuration",
+            "description": {
+              "content": "Returns the advanced search configuration describing searchable terms by scope, search options and stop words.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "advanced-search-config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "815f2fc2-a622-4ea8-bbb1-764b92077a49",
+              "name": "Advanced search configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "advanced-search-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": {},\n  \"options\": {},\n  \"stopWords\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lux.collections.yale.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ec74698a-8b88-4b8c-a1c8-cd6c12ca06a0",
+    "name": "LUX Yale Collections Discovery Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.\n\nContact Support:\n Name: LUX Yale Collections Discovery",
+      "type": "text/plain"
+    }
+  }
+}

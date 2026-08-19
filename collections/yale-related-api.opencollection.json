@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LUX Yale Collections Discovery Configuration Related API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Related",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve related entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lux.collections.yale.edu/api/related-list/:scope",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Related list name."
+              },
+              {
+                "name": "uri",
+                "value": "",
+                "type": "query",
+                "description": "URI of the entity whose relations are requested."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an OrderedCollectionPage listing documents related to a given URI through various relationship types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

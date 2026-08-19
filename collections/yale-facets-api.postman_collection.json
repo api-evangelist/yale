@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "4368724e-4911-4a50-ad38-2db9bfb61f79",
+      "name": "Facets",
+      "description": {
+        "content": "Faceted aggregation over search results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9277b0a-86fb-445f-96b4-23dd2df8d064",
+          "name": "Retrieve facet values",
+          "request": {
+            "name": "Retrieve facet values",
+            "description": {
+              "content": "Returns an OrderedCollectionPage of facet values and their occurrence counts for a named facet over a query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "facets",
+                ":scope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Facet name."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search criteria."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageLength",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "121a207e-bb8e-42f1-93da-50bcbc1424e9",
+              "name": "Facet values with counts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "facets",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageLength",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"https://vmwysBpeUiOWPGhvdYPfw.sucWlNvIT3uaO.G9jq9Wv-p1Z-eSJoW5OLXzgytAN9-HWfRbOC\",\n  \"type\": \"OrderedCollectionPage\",\n  \"orderedItems\": [\n    {\n      \"id\": \"https://MaBWlQPtgcnsXRmHcrM.jtoFue0EvWNpu3MXCW.3oChn7wQCOYBD2IXYff9PDcZzOW6rJ,FiHo3pqrznHc\",\n      \"type\": \"HumanMadeObject\"\n    },\n    {\n      \"id\": \"http://GiqtfSURCzGNpgfpWk.hbsuyifjZZAljiId1\",\n      \"type\": \"HumanMadeObject\"\n    }\n  ],\n  \"@context\": \"https://VEadVZjnrmBwUOcdwPDMztX.btdbUoR6vp3+kh8ySjJs\",\n  \"partOf\": {\n    \"id\": \"https://sYjtqOe.tdzzJtL7.KJCEBx.n4jucafQxAkoQ\",\n    \"type\": \"OrderedCollection\",\n    \"totalItems\": 4447,\n    \"@context\": \"http://reHWEkJA.sgcaOGS7\",\n    \"label\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"summary\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"first\": {\n      \"id\": \"https://ecRHOjlGoryerIobkOjZnrHybZsF.xopjkz5fhBnA-LfPdD6O5qegPB2OlTQnRUzd86gGjEtC7JpZMRtghbZofV9OJ6pNwiKTSj+\",\n      \"type\": \"OrderedCollectionPage\"\n    },\n    \"last\": {\n      \"id\": \"https://JhjOiogAXBeFHaDTGBAQOmiSDrnG.mhwSFW.2DQcokRnJY\",\n      \"type\": \"OrderedCollectionPage\"\n    }\n  },\n  \"next\": {\n    \"id\": \"https://s.tzox9ynQML.pCDBiLuEb.s8MtPKQlCrn9qCagmLatiTAfmyuuIGdTmP9Vb3wd3ToTzqKW\",\n    \"type\": \"OrderedCollectionPage\"\n  },\n  \"prev\": {\n    \"id\": \"http://avbyNcXZkjlYpdwMveuHWfcRD.pus7o1JCo+o21tgF3sVwoJ7uYKVyHG4lvq9dWY6XJ7IJoTMhJ+4kYQf\",\n    \"type\": \"OrderedCollectionPage\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lux.collections.yale.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "58d7c99d-9df8-43cb-8dcd-26c8690770cc",
+    "name": "LUX Yale Collections Discovery Configuration Facets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.\n\nContact Support:\n Name: LUX Yale Collections Discovery",
+      "type": "text/plain"
+    }
+  }
+}

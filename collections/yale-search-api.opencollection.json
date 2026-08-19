@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LUX Yale Collections Discovery Configuration Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search a scope",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lux.collections.yale.edu/api/search/:scope",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search criteria in LUX JSON Grammar or String Grammar."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageLength",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort specification."
+              },
+              {
+                "name": "filterResults",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Executes a query within a scope and returns a Linked Art OrderedCollectionPage of matching results in JSON-LD. The query may be expressed in LUX JSON Grammar or LUX String Grammar."
+        },
+        {
+          "info": {
+            "name": "Estimate result count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lux.collections.yale.edu/api/search-estimate/:scope",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search criteria in LUX JSON Grammar."
+              }
+            ]
+          },
+          "docs": "Returns a Linked Art OrderedCollection containing the totalItems count of unfiltered results matching the query, without retrieving full documents."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

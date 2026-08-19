@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LUX Yale Collections Discovery Configuration Facets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Facets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve facet values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lux.collections.yale.edu/api/facets/:scope",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Facet name."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search criteria."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageLength",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an OrderedCollectionPage of facet values and their occurrence counts for a named facet over a query."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

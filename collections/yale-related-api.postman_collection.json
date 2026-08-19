@@ -1,0 +1,153 @@
+{
+  "item": [
+    {
+      "id": "75f6b907-b58f-4b74-8007-070b8045a45a",
+      "name": "Related",
+      "description": {
+        "content": "Related entity discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ec1e15f-d6a0-4a5a-8692-a45bc8fc91bf",
+          "name": "Retrieve related entities",
+          "request": {
+            "name": "Retrieve related entities",
+            "description": {
+              "content": "Returns an OrderedCollectionPage listing documents related to a given URI through various relationship types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "related-list",
+                ":scope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Related list name."
+                },
+                {
+                  "disabled": false,
+                  "key": "uri",
+                  "value": "<uri>",
+                  "description": "(Required) URI of the entity whose relations are requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b3adeec-15a8-4a6a-9257-952908790321",
+              "name": "Related entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "related-list",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"http://HABoRWUBYlpDXdUxtBksDydyqo.feivBD8ltFt7WexpPmx5a36WPWrlng,mCnl0+ravc93LQG0mFkctu9oODktyflPD2\",\n  \"type\": \"OrderedCollectionPage\",\n  \"orderedItems\": [\n    {\n      \"id\": \"https://wkFETTzXkRlPcfBKP.xrgnFY,rRP6cyQFCjQSGT85xxNhx1P0Qja\",\n      \"type\": \"HumanMadeObject\"\n    },\n    {\n      \"id\": \"http://xfTVSaCTPZOzOuJXQfhNACuszMJ.ivtzmHvt+cCM6IQqG6-+jHRxbK+1lMo\",\n      \"type\": \"HumanMadeObject\"\n    }\n  ],\n  \"@context\": \"https://cIAfgLtSjOPx.ffwXY9X5Ovwmw0HnEAPP5L6gR8RMqOArzRmz88qBH8a.a8wSiFkabdsGNJfIA\",\n  \"partOf\": {\n    \"id\": \"https://YCKMlMEkjwYXQitd.vuyuR-IgbeS1180vLTH6gEV9yo+LR7k2M4Q1-bWTyetboxgNZ\",\n    \"type\": \"OrderedCollection\",\n    \"totalItems\": 1389,\n    \"@context\": \"https://bs.nottr021UyUizQ9qKoO2yTN31UkgfW91yKey79\",\n    \"label\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"summary\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"first\": {\n      \"id\": \"https://jFgevfTxIOTbaposcPdVrCTuWYKWWM.truyqc,,FJEPiq,WHGILExeL4AbduXF\",\n      \"type\": \"OrderedCollectionPage\"\n    },\n    \"last\": {\n      \"id\": \"https://dqEGgtcvvQINiPd.elip-Hj+kBKqRWGR-GIDOb6EvsLWApBVIHkBLYXmyNFgjj\",\n      \"type\": \"OrderedCollectionPage\"\n    }\n  },\n  \"next\": {\n    \"id\": \"https://JZlujRyNg.gxrmwCM6Rfsk2rfTbAbBNz\",\n    \"type\": \"OrderedCollectionPage\"\n  },\n  \"prev\": {\n    \"id\": \"https://BbntrMvxXGI.jcowA6oUBc,x8Wr\",\n    \"type\": \"OrderedCollectionPage\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lux.collections.yale.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cd87f3da-926c-4615-a0e0-2c4546c90acd",
+    "name": "LUX Yale Collections Discovery Configuration Related API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.\n\nContact Support:\n Name: LUX Yale Collections Discovery",
+      "type": "text/plain"
+    }
+  }
+}

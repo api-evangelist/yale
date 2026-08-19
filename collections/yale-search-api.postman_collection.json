@@ -1,0 +1,379 @@
+{
+  "item": [
+    {
+      "id": "d70fde71-b145-48da-b459-392b98d01c06",
+      "name": "Search",
+      "description": {
+        "content": "Search and discovery across LUX scopes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f70c67e7-de00-4081-ba2a-072c57a1ddfc",
+          "name": "Search a scope",
+          "request": {
+            "name": "Search a scope",
+            "description": {
+              "content": "Executes a query within a scope and returns a Linked Art OrderedCollectionPage of matching results in JSON-LD. The query may be expressed in LUX JSON Grammar or LUX String Grammar.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "search",
+                ":scope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search criteria in LUX JSON Grammar or String Grammar."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "1-based page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageLength",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "filterResults",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61cfda06-1ab8-4548-ab05-de00024ea9e7",
+              "name": "A page of search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageLength",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterResults",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"http://aKwzFwFkXScMhHszciedxTjxcfd.ityvCoJmB9SbQttdflCWCN-SeAd.amW9rRjIggKnWnDIJJK\",\n  \"type\": \"OrderedCollectionPage\",\n  \"orderedItems\": [\n    {\n      \"id\": \"http://vMeWVnquseUjqtzYRG.lrlw.F.sEjaSU9or0CQsa2Wi3r02PSv\",\n      \"type\": \"HumanMadeObject\"\n    },\n    {\n      \"id\": \"https://jrgDGZrBlrIjmb.qptrFYBZQR\",\n      \"type\": \"HumanMadeObject\"\n    }\n  ],\n  \"@context\": \"https://mOoniQGaujsPPNiQ.usaIPU9x791H0fmpD7JcdNTua\",\n  \"partOf\": {\n    \"id\": \"http://CWaLvwgYrtAzZfGKPUyEmQcmuW.xumFCx8VvNh+bM6NtHz.PzBY9Blrp670ZUe5DlBvEDQCrGJFf12fHoEIrbXIote2oZNF\",\n    \"type\": \"OrderedCollection\",\n    \"totalItems\": 3928,\n    \"@context\": \"http://xmtpMVEAUHEOvyIoOVBpPSjfRdnUV.qollh8xsqt\",\n    \"label\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"summary\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"first\": {\n      \"id\": \"http://KmBYPjBmOhMWKJxtfkB.ncaFVKQFtLi1DZpvPc4WFNWx4Uf5lcN6ie3JipBncck-95h0uU\",\n      \"type\": \"OrderedCollectionPage\"\n    },\n    \"last\": {\n      \"id\": \"https://TQKTUA.eawjRx8jWycJCQI.AIksqJEaPl\",\n      \"type\": \"OrderedCollectionPage\"\n    }\n  },\n  \"next\": {\n    \"id\": \"http://zRgteIQCJM.gkzRCKCrMF28UV6f8n1UXd-GQx,5zMqHoA2x\",\n    \"type\": \"OrderedCollectionPage\"\n  },\n  \"prev\": {\n    \"id\": \"http://xuN.oljhLK8\",\n    \"type\": \"OrderedCollectionPage\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a8c4b04-83d5-4ff0-b5f4-a99aad1198e8",
+              "name": "Malformed query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageLength",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterResults",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c9f1f40-652e-4feb-944f-1122f595f338",
+          "name": "Estimate result count",
+          "request": {
+            "name": "Estimate result count",
+            "description": {
+              "content": "Returns a Linked Art OrderedCollection containing the totalItems count of unfiltered results matching the query, without retrieving full documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "search-estimate",
+                ":scope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search criteria in LUX JSON Grammar."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36fc89cf-969d-4dce-8820-50ada93e9890",
+              "name": "Result count estimate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search-estimate",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"https://QKGJwYVBBjmarHbyJQKTLxaNr.edswNy3pECKutIZeNENnFfdygTje0YAuKVB+5OIBuywZdJLtZnFDX-wMPprFTf\",\n  \"type\": \"OrderedCollection\",\n  \"totalItems\": 6104,\n  \"@context\": \"http://XCCJnACbzefnbCgXzhknFAMFUFJqKUz.rvyOKV02wdugqeaZt7KPS,XtxsJZE21-zp4czt0Vi+pgyTSkutZyk.-M,mUuT-dIVhQdK7l+7\",\n  \"label\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"summary\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"first\": {\n    \"id\": \"https://WVXREze.udfNkpH,78H,91mjmzUdbP4GitwHjtVADTojxT8\",\n    \"type\": \"OrderedCollectionPage\"\n  },\n  \"last\": {\n    \"id\": \"https://TkJqWCka.nrL341hFQGoHjg+u8\",\n    \"type\": \"OrderedCollectionPage\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5659f29e-4bc6-4d23-8b99-996d20b86ef0",
+              "name": "Malformed query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "search-estimate",
+                    ":scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) The discovery scope to query. LUX scopes map to the major Linked Art entity categories."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lux.collections.yale.edu",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f66bf57f-83ca-4d18-a285-8bd9c4c928d7",
+    "name": "LUX Yale Collections Discovery Configuration Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.\n\nContact Support:\n Name: LUX Yale Collections Discovery",
+      "type": "text/plain"
+    }
+  }
+}
