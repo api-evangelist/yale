@@ -313,6 +313,12 @@ apis:
   - Library
   - Digital Collections
   - Cultural Heritage
+  - Image
+  tags_raw:
+  - IIIF
+  - Library
+  - Digital Collections
+  - Cultural Heritage
   - Images
   properties:
   - type: OpenAPI
