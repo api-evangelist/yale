@@ -1,0 +1,25 @@
+slug: yale
+provider: Yale University
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Federation
+  spec_file: yale-federation-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /idp/shibboleth 'Retrieve Yale's SAML 2.0 identity provider metadata'; 'Machine-readable
+    SAML 2.0 identity-federation surface'
+  reason: Publishes SAML identity-provider metadata for federated single sign-on (InCommon/eduGAIN), which
+    is squarely identity and access management / federation.

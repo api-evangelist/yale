@@ -486,6 +486,9 @@ apis:
   - type: x-examples
     url: examples/yale-shibboleth-idp-metadata-example.xml
 common:
+  - type: CapabilityMap
+    url: capabilities/yale-capability-edges.yml
+    name: Yale University Business Capability Map
   - type: Website
     url: https://www.yale.edu/
   - type: DeveloperPortal
