@@ -31,6 +31,19 @@ description: >-
   admin contact, and the course catalog at courses.yale.edu / catalog.yale.edu, which is a Leepfrog
   CourseLeaf tenancy. Yale publishes no open-data portal, no llms.txt and no security.txt.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
