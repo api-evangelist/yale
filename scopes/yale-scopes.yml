@@ -1,0 +1,53 @@
+generated: '2026-08-19'
+method: derived
+source: >-
+  Derived from authentication/yale-authentication.yml, which is itself probed. No OAuth
+  authorization server, no scope document and no consent screen was found on any Yale-operated
+  host on 2026-08-19.
+description: >-
+  Authorization granularity across Yale University's surfaces. This artifact records an ABSENCE
+  deliberately rather than inventing a scope vocabulary: Yale's public tier has no authorization
+  layer to describe, and Yale's private tier partitions access by provisioning decision rather
+  than by a machine-readable scope.
+scopes:
+  model: none
+  oauth2: not_found
+  openid_connect: not_found
+  note: >-
+    No .well-known/oauth-authorization-server, no .well-known/openid-configuration and no scope
+    enumeration was found on lux.collections.yale.edu, dataverse.yale.edu,
+    collections.library.yale.edu or developers.yale.edu.
+authorization_partitions:
+- surface: LUX Collections Discovery API
+  x-operator: institution
+  partition: none
+  detail: Anonymous read of the whole published corpus. No per-caller authorization exists.
+- surface: Yale Dataverse Repository API
+  x-operator: institution
+  partition: publication state
+  detail: >-
+    Authorization is binary and derived from content state, not from a scope: published content is
+    world-readable, unpublished drafts require an API token bound to a NetID-authenticated account.
+    Dataverse's role model (admin, curator, contributor, file downloader) sits behind that token
+    and is not exposed on any public endpoint.
+- surface: Yale Portal APIs
+  x-operator: institution
+  partition: per-API key registration
+  detail: >-
+    A developer registers an application in the Yale Developer Portal and names the specific APIs
+    it needs. The API key is therefore scoped by enumeration at issue time rather than by an OAuth
+    scope string presented per request.
+- surface: Yale Enterprise (SOA) Services
+  x-operator: institution
+  partition: service account plus data governance policy
+  detail: >-
+    Yale states each SOA service has "specific request and data governance policies" and access is
+    requested per service (People Hub, COA, GetSupervisoryOrgs). The partition is contractual and
+    human-reviewed, not machine-readable.
+- surface: Yale Identity Federation
+  x-operator: institution
+  partition: SAML attribute release
+  detail: >-
+    The closest thing Yale operates to a scope model is attribute release from the Shibboleth IdP
+    to federated service providers, negotiated per relying party through InCommon. The released
+    attribute set is not published in the public metadata document.

@@ -1,0 +1,149 @@
+<EntityDescriptor entityID="https://auth.yale.edu/idp/shibboleth"
+	xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	 <Extensions>
+	    <mdattr:EntityAttributes xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute">
+	      <saml:Attribute xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+	            NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"
+	            Name="urn:oasis:names:tc:SAML:attribute:assurance-certification">
+	        <saml:AttributeValue>https://refeds.org/sirtfi</saml:AttributeValue>
+	      </saml:Attribute>
+	    </mdattr:EntityAttributes>
+	 </Extensions>
+
+	<IDPSSODescriptor
+		protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+		<Extensions>
+			<shibmd:Scope regexp="false">yale.edu</shibmd:Scope>
+		</Extensions>
+
+		<KeyDescriptor>
+			<ds:KeyInfo>
+				<ds:X509Data>
+					<ds:X509Certificate>
+						MIIDIDCCAgigAwIBAgIVANUBkCs/+UH9FvRGL/Vp/l9kdXzEMA0GCSqGSIb3DQEB
+						BQUAMBgxFjAUBgNVBAMTDWF1dGgueWFsZS5lZHUwHhcNMDkwOTEwMTc0NzEwWhcN
+						MjkwOTEwMTc0NzEwWjAYMRYwFAYDVQQDEw1hdXRoLnlhbGUuZWR1MIIBIjANBgkq
+						hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmfbA8fNVeW6RJm2n9Jdos9o4eINYdMqj
+						qLU0fWBs9+CHwIVb3WIyp7jhWyr+ILC6mMGvb/9TNm3vlqGPSwR3yKe5KBPlTW81
+						dSUuqW6emxX1KIhQOy3ynGETcDiDzTosOYgBMynzoqkZSVDgvKn8GUnuj9V1sSwJ
+						8tuiQLRu42Md+3pN0ED6bX/5wkpal5ZV5uZ2XUb0oS395BS39rAsNw7FyL72s1bT
+						wMml1U1lrHOTVL1zEeuSjKjT8kBFp01Rkq7EdGtUIMswb6flZW4Ss5Kg3ufRxcnt
+						2j7/OoGA6ZpD2w74R9Jk4phPoAM0nJ5mX/zKz8rU06FjHZAOHbLqEwIDAQABo2Ew
+						XzA+BgNVHREENzA1gg1hdXRoLnlhbGUuZWR1hiRodHRwczovL2F1dGgueWFsZS5l
+						ZHUvaWRwL3NoaWJib2xldGgwHQYDVR0OBBYEFL/j9kq62w7o4+hY1Vnfvv2f8kL4
+						MA0GCSqGSIb3DQEBBQUAA4IBAQASP6sIJlKHtn+bPJ/TaO2ch/pNNzeBr7ufcJzg
+						tcF0hHbSegu5KlghOsdUVSke3pIThyp7Fs1kUTR7JwGJkQuplo5nbsYOXd6KhoDZ
+						47omRMk0Ktm2UKvAVx1TEsQKRimFCoZvyM09M08rJBQfFqIXhdAmc4nTSnuuP4Bb
+						sLIiw/Px7ck5SKU34P42sC84ZOHEipMaIvOius1kwNfXkT1WruObk76Cqhnb64QR
+						GdIAn0a0g8Z+gKxllm7FIkCT7auN9E83TfvxjTXLfy6nxSAL/CtiPR4d29PvlDHn
+						ha4CMf2Z60YzbQ1cB5zpjHwlAyDURJtmQG3y2rHqF7/sm/aC
+
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+
+		<ArtifactResolutionService
+			Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+			Location="https://auth.yale.edu/idp/profile/SAML1/SOAP/ArtifactResolution"
+			index="1" />
+
+		<ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+			Location="https://auth.yale.edu/idp/profile/SAML2/SOAP/ArtifactResolution"
+			index="2" />
+
+		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+		</NameIDFormat>
+
+		<SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest"
+			Location="https://auth.yale.edu/idp/profile/Shibboleth/SSO" />
+
+		<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+			Location="https://auth.yale.edu/idp/profile/SAML2/POST/SSO" />
+
+		<SingleSignOnService
+			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+			Location="https://auth.yale.edu/idp/profile/SAML2/POST-SimpleSign/SSO" />
+
+		<SingleSignOnService
+			Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+			Location="https://auth.yale.edu/idp/profile/SAML2/Redirect/SSO" />
+	</IDPSSODescriptor>
+
+	<AttributeAuthorityDescriptor
+		protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+		<Extensions>
+			<shibmd:Scope regexp="false">yale.edu</shibmd:Scope>
+		</Extensions>
+
+		<KeyDescriptor>
+			<ds:KeyInfo>
+				<ds:X509Data>
+					<ds:X509Certificate>
+						MIIDIDCCAgigAwIBAgIVANUBkCs/+UH9FvRGL/Vp/l9kdXzEMA0GCSqGSIb3DQEB
+						BQUAMBgxFjAUBgNVBAMTDWF1dGgueWFsZS5lZHUwHhcNMDkwOTEwMTc0NzEwWhcN
+						MjkwOTEwMTc0NzEwWjAYMRYwFAYDVQQDEw1hdXRoLnlhbGUuZWR1MIIBIjANBgkq
+						hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmfbA8fNVeW6RJm2n9Jdos9o4eINYdMqj
+						qLU0fWBs9+CHwIVb3WIyp7jhWyr+ILC6mMGvb/9TNm3vlqGPSwR3yKe5KBPlTW81
+						dSUuqW6emxX1KIhQOy3ynGETcDiDzTosOYgBMynzoqkZSVDgvKn8GUnuj9V1sSwJ
+						8tuiQLRu42Md+3pN0ED6bX/5wkpal5ZV5uZ2XUb0oS395BS39rAsNw7FyL72s1bT
+						wMml1U1lrHOTVL1zEeuSjKjT8kBFp01Rkq7EdGtUIMswb6flZW4Ss5Kg3ufRxcnt
+						2j7/OoGA6ZpD2w74R9Jk4phPoAM0nJ5mX/zKz8rU06FjHZAOHbLqEwIDAQABo2Ew
+						XzA+BgNVHREENzA1gg1hdXRoLnlhbGUuZWR1hiRodHRwczovL2F1dGgueWFsZS5l
+						ZHUvaWRwL3NoaWJib2xldGgwHQYDVR0OBBYEFL/j9kq62w7o4+hY1Vnfvv2f8kL4
+						MA0GCSqGSIb3DQEBBQUAA4IBAQASP6sIJlKHtn+bPJ/TaO2ch/pNNzeBr7ufcJzg
+						tcF0hHbSegu5KlghOsdUVSke3pIThyp7Fs1kUTR7JwGJkQuplo5nbsYOXd6KhoDZ
+						47omRMk0Ktm2UKvAVx1TEsQKRimFCoZvyM09M08rJBQfFqIXhdAmc4nTSnuuP4Bb
+						sLIiw/Px7ck5SKU34P42sC84ZOHEipMaIvOius1kwNfXkT1WruObk76Cqhnb64QR
+						GdIAn0a0g8Z+gKxllm7FIkCT7auN9E83TfvxjTXLfy6nxSAL/CtiPR4d29PvlDHn
+						ha4CMf2Z60YzbQ1cB5zpjHwlAyDURJtmQG3y2rHqF7/sm/aC
+
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+
+		<AttributeService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+			Location="https://auth.yale.edu/idp/profile/SAML1/SOAP/AttributeQuery" />
+
+		<AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+			Location="https://auth.yale.edu/idp/profile/SAML2/SOAP/AttributeQuery" />
+
+		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+		<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+		</NameIDFormat>
+
+	</AttributeAuthorityDescriptor>
+
+	<Organization>
+		<OrganizationName xml:lang="en">Yale University</OrganizationName>
+		<OrganizationDisplayName xml:lang="en">Yale University</OrganizationDisplayName>
+		<OrganizationURL xml:lang="en">http://www.yale.edu</OrganizationURL>
+	</Organization>
+
+	<ContactPerson contactType="administrative">
+		<GivenName>Identity Management Team</GivenName>
+		<EmailAddress>iam.msg@yale.edu</EmailAddress>
+	</ContactPerson>
+
+	<ContactPerson contactType="technical">
+		<GivenName>Identity Management Team</GivenName>
+		<EmailAddress>iam.msg@yale.edu</EmailAddress>
+	</ContactPerson>
+	
+	<ContactPerson contactType="support">
+		<GivenName>Identity Management Team</GivenName>
+		<EmailAddress>iam.msg@yale.edu</EmailAddress>
+	</ContactPerson>
+	
+	<ContactPerson contactType="other"> 
+	    <GivenName>Security Response Team</GivenName>
+	    <EmailAddress>information.security@yale.edu</EmailAddress>
+	</ContactPerson>
+
+</EntityDescriptor>    

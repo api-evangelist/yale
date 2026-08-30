@@ -1,0 +1,63 @@
+{
+    "status": "OK",
+    "data": {
+        "q": "climate",
+        "total_count": 17,
+        "start": 0,
+        "spelling_alternatives": {},
+        "items": [
+            {
+                "name": "The Power of Protest in the Media: Examining Portrayals of Climate Activism in UK News",
+                "type": "dataset",
+                "url": "https://doi.org/10.60600/YU/7VDIEQ",
+                "global_id": "doi:10.60600/YU/7VDIEQ",
+                "description": "Existing research on American climate opinion demonstrates that a wide variety of variables impact whether voters support a given policy. However, little research has empirically tested which variables matter the most in creating durable majority support for climate policies, and how varying outcomes of those variables can impact such support. I use a conjoint experiment to test the extent to which American voters value the six most important variables around climate mitigation policy, as illustrated in the current literature, and which potential options among those values attract the greatest support. I improve in external validity over previous conjoints by introducing partisanship and policy level, as well as more realistic ranges for policy cost. I find that voters generally-and across racial, gender, and partisan lines- value some variables ten times higher than others, and prefer Democratic or Bipartisan policies that are low cost and provide a variety of benefits.",
+                "published_at": "2026-04-08T21:01:16Z",
+                "publisher": "ISPS Data Archive",
+                "citationHtml": "Eric Scheuch; Mark Ortiz; Ganga Shreedhar; Laura Thomas-Walters, 2024, \"The Power of Protest in the Media: Examining Portrayals of Climate Activism in UK News\", <a href=\"https://doi.org/10.60600/YU/7VDIEQ\" target=\"_blank\">https://doi.org/10.60600/YU/7VDIEQ</a>, Yale Dataverse, V2",
+                "identifier_of_dataverse": "isps",
+                "name_of_dataverse": "ISPS Data Archive",
+                "citation": "Eric Scheuch; Mark Ortiz; Ganga Shreedhar; Laura Thomas-Walters, 2024, \"The Power of Protest in the Media: Examining Portrayals of Climate Activism in UK News\", https://doi.org/10.60600/YU/7VDIEQ, Yale Dataverse, V2",
+                "publicationStatuses": [
+                    "Published"
+                ],
+                "storageIdentifier": "s3://10.60600/YU/7VDIEQ",
+                "keywords": [
+                    "climate activism",
+                    "media"
+                ],
+                "subjects": [
+                    "Social Sciences"
+                ],
+                "fileCount": 4,
+                "versionId": 948,
+                "versionState": "RELEASED",
+                "majorVersion": 2,
+                "minorVersion": 0,
+                "createdAt": "2026-01-06T15:44:59Z",
+                "updatedAt": "2026-04-08T21:01:16Z",
+                "contacts": [
+                    {
+                        "name": "Institution for Social and Policy Studies",
+                        "affiliation": "Yale University"
+                    }
+                ],
+                "relatedMaterial": [
+                    "The Power of Protest in the Media: Examining Portrayals of Climate Activism in UK News"
+                ],
+                "geographicCoverage": [
+                    {
+                        "other": "Europe,"
+                    }
+                ],
+                "authors": [
+                    "Eric Scheuch",
+                    "Mark Ortiz",
+                    "Ganga Shreedhar",
+                    "Laura Thomas-Walters"
+                ]
+            }
+        ],
+        "count_in_response": 1
+    }
+}

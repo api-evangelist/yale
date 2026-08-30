@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  title: Yale University Library Digital Collections IIIF API
+  description: 'Public IIIF Presentation 3.0 surface of Yale University Library''s Digital Collections (https://collections.library.yale.edu). The service is institution-operated: the host resolves to an AWS load balancer in Yale''s own account (alb-yul-dc-prod), and the software stack is Yale-authored and openly published by the yalelibrary GitHub organization (yul-dc-blacklight, yul-dc-management, yul-dc-iiif-imageserver, yul-dc-camerata).
+
+    Only the manifest endpoint was verified callable. Yale''s robots.txt explicitly disallows crawler traffic to /manifests/, and the Blacklight JSON surface (/catalog.json, /catalog/{oid}.json) answers automated requests with an empty HTTP 202 edge challenge rather than JSON, so it is recorded as gated rather than described here.'
+  version: '3.0'
+  contact:
+    name: Yale University Library — Digital Collections
+    url: https://collections.library.yale.edu/
+servers:
+- url: https://collections.library.yale.edu
+  description: Yale University Library Digital Collections production (institution-operated)
+tags:
+- name: IIIF
+  description: IIIF Presentation 3.0 manifests for digitized objects
+paths:
+  /manifests/{oid}:
+    get:
+      tags:
+      - IIIF
+      operationId: getManifest
+      summary: Retrieve the IIIF Presentation 3.0 manifest for an object
+      description: Returns a IIIF Presentation 3.0 Manifest describing a digitized object — its canvases, image services, structural ranges and descriptive metadata. Verified 200 on 2026-08-19 for oid 2055095. Note that https://collections.library.yale.edu/robots.txt disallows /manifests/ for all user agents; this endpoint is public but not intended for crawling.
+      parameters:
+      - name: oid
+        in: path
+        required: true
+        description: Yale Digital Collections object identifier (numeric OID).
+        schema:
+          type: string
+        example: '2055095'
+      responses:
+        '200':
+          description: IIIF Presentation 3.0 Manifest.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IIIFManifest'
+        '404':
+          description: No object with that identifier. Returned as an HTML body ("We're sorry, but the item you've requested does not appear to exist"), not JSON.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    Canvas:
+      type: object
+      required:
+      - id
+      - type
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+          - Canvas
+        label:
+          $ref: '#/components/schemas/LanguageMap'
+        height:
+          type: integer
+        width:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    IIIFManifest:
+      type: object
+      description: A IIIF Presentation 3.0 Manifest. Yale's manifests additionally declare the IIIF Content Search 1 and navPlace extension contexts.
+      required:
+      - '@context'
+      - id
+      - type
+      properties:
+        '@context':
+          oneOf:
+          - type: string
+            format: uri
+          - type: array
+            items:
+              type: string
+              format: uri
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+          - Manifest
+        label:
+          $ref: '#/components/schemas/LanguageMap'
+        summary:
+          $ref: '#/components/schemas/LanguageMap'
+        metadata:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                $ref: '#/components/schemas/LanguageMap'
+              value:
+                $ref: '#/components/schemas/LanguageMap'
+        requiredStatement:
+          type: object
+          additionalProperties: true
+        rights:
+          type: string
+          format: uri
+        provider:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        items:
+          type: array
+          description: Canvases making up the object.
+          items:
+            $ref: '#/components/schemas/Canvas'
+        structures:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        service:
+          type: array
+          description: Associated services, including IIIF Content Search.
+          items:
+            type: object
+            additionalProperties: true
+    LanguageMap:
+      type: object
+      description: IIIF language map — BCP 47 language tag (or "none") to an array of strings.
+      additionalProperties:
+        type: array
+        items:
+          type: string
+externalDocs:
+  description: IIIF Presentation API 3.0 specification
+  url: https://iiif.io/api/presentation/3.0/

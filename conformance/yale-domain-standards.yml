@@ -1,0 +1,131 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live probes of Yale-operated and Yale-tenanted hosts on 2026-08-19, plus the DataCite REST API.
+  Every hit below is anchored to a URL that was fetched and a status code that was observed.
+description: >-
+  Conformance of Yale University's verified surfaces against the Kin Score `education` regulatory
+  regime's domain standards (scim, lti, oneroster, ed-fi, caliper, qti, oai-pmh, shibboleth, saml,
+  orcid, datacite, crossref). Reward-only: standards not evidenced below are recorded as not_found,
+  which means we did not find them on a public surface, not that Yale does not use them internally.
+regime: education
+regime_id: education
+conformance:
+- standard: shibboleth
+  status: conformant
+  x-operator: institution
+  evidence:
+    url: https://auth.yale.edu/idp/shibboleth
+    status: 200
+    content_type: application/xml;charset=UTF-8
+    location: >-
+      EntityDescriptor/@entityID = "https://auth.yale.edu/idp/shibboleth";
+      IDPSSODescriptor/Extensions/shibmd:Scope = "yale.edu";
+      protocolSupportEnumeration includes "urn:mace:shibboleth:1.0"
+    note: >-
+      Yale operates a Shibboleth Identity Provider and publishes its metadata unauthenticated. The
+      host resolves to shibboleth-idp-prd.inbound.iam.aws.yale.edu, inside Yale's own AWS estate.
+  artifact: openapi/yale-identity-federation-openapi.yml
+- standard: saml
+  status: conformant
+  x-operator: institution
+  evidence:
+    url: https://mdq.incommon.org/entities/https%3A%2F%2Fauth.yale.edu%2Fidp%2Fshibboleth
+    status: 200
+    content_type: application/samlmetadata+xml
+    location: >-
+      EntityDescriptor/Extensions/mdrpi:RegistrationInfo/@registrationAuthority = "https://incommon.org";
+      mdui:DisplayName = "Yale University";
+      IDPSSODescriptor/SingleSignOnService bindings urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect,
+      HTTP-POST and HTTP-POST-SimpleSign
+    note: >-
+      Yale's SAML 2.0 entity is registered in the InCommon federation and resolvable through its
+      per-entity metadata query service, which also carries it into eduGAIN interfederation.
+  artifact: openapi/yale-identity-federation-openapi.yml
+- standard: datacite
+  status: conformant
+  x-operator: institution
+  evidence:
+  - url: https://api.datacite.org/prefixes/10.60600
+    status: 200
+    location: data.attributes.prefix = "10.60600", createdAt 2023-03-01
+    note: Yale Dataverse mints DOIs under a DataCite prefix registered to Yale, not under a vendor's prefix.
+  - url: https://doi.org/10.60600/YU/YUVYJP
+    status: 200
+    location: resolves to https://dataverse.yale.edu/dataset.xhtml?persistentId=doi:10.60600/YU/YUVYJP
+    note: A DOI under that prefix resolves to Yale's own repository host.
+  artifact: openapi/yale-dataverse-openapi.yml
+- standard: orcid
+  status: conformant
+  x-operator: institution
+  evidence:
+    url: https://dataverse.yale.edu/api/metadatablocks/citation
+    status: 200
+    location: citation metadata block declares ORCID among authorIdentifierScheme controlled values
+    note: >-
+      Yale Dataverse accepts ORCID as an author identifier scheme on deposit. This evidences
+      support in the deposit contract; it does not measure how many Yale datasets carry one.
+  artifact: openapi/yale-dataverse-openapi.yml
+- standard: oai-pmh
+  status: conformant
+  x-operator: tenant
+  evidence:
+  - url: https://elischolar.library.yale.edu/do/oai/?verb=Identify
+    status: 200
+    content_type: text/xml
+    location: >-
+      OAI-PMH/Identify/repositoryName = "EliScholar – A Digital Platform for Scholarly Publishing
+      at Yale"; protocolVersion 2.0; granularity YYYY-MM-DDThh:mm:ssZ; earliestDatestamp
+      2000-01-19T00:00:00Z
+  - url: https://elischolar.library.yale.edu/do/oai/?verb=ListSets
+    status: 200
+    location: setSpec values publication:applebaum_award, publication:arch2_theses, publication:babylonian, …
+  note: >-
+    CREDIT WITH CARE. The endpoint is on a Yale host, the repository name is Yale's and the content
+    is Yale's — but the Identify response gives adminEmail dc-support@elsevier.com, and
+    elischolar.library.yale.edu is a CNAME to dcyalelib.bepress.com. The OAI-PMH implementation is
+    Elsevier's bepress Digital Commons, running under Yale's name. Yale operates the collection
+    policy; Elsevier operates the protocol endpoint. Recorded as tenant, not institution.
+  artifact: examples/yale-elischolar-oaipmh-identify-example.xml
+- standard: oai-pmh
+  status: broken
+  x-operator: institution
+  evidence:
+  - url: https://dataverse.yale.edu/oai?verb=Identify
+    status: 503
+    content_type: text/html;charset=UTF-8
+    location: Payara Server 7.2026.2 error report page instead of an OAI-PMH response
+  - url: https://dataverse.yale.edu/oai?verb=ListMetadataFormats
+    status: 503
+    location: same Payara error report
+  note: >-
+    Yale Dataverse ships an OAI-PMH harvesting endpoint as part of the Dataverse software, and it
+    is the one surface where Yale itself would be the OAI-PMH operator — but it returns a 503
+    application-server error on every verb tried. This is a live defect on an institution-operated
+    surface, not an absence, and it is deliberately NOT scored as conformant.
+- standard: scim
+  status: not_found
+  note: No public SCIM discovery endpoint found on developers.yale.edu or Yale-operated hosts.
+- standard: lti
+  status: not_found
+  note: >-
+    Yale runs Canvas (Instructure) for its LMS. Any LTI conformance there belongs to Instructure's
+    contract, not Yale's, and no Yale-operated LTI surface was found.
+- standard: oneroster
+  status: not_found
+  note: Not applicable in evidence — no public rostering surface found.
+- standard: ed-fi
+  status: not_found
+  note: Ed-Fi is a K-12 data standard; no evidence on any Yale surface, as expected.
+- standard: caliper
+  status: not_found
+  note: No public Caliper analytics endpoint found.
+- standard: qti
+  status: not_found
+  note: No public QTI assessment surface found.
+- standard: crossref
+  status: not_found
+  note: >-
+    Yale registers research-data DOIs through DataCite (prefix 10.60600). No Yale-operated Crossref
+    member surface was evidenced; Yale-affiliated journal content on EliScholar is registered under
+    the bepress/Elsevier platform's arrangements, not Yale's.

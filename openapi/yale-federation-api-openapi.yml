@@ -1,0 +1,38 @@
+openapi: 3.2.0
+info:
+  title: Yale University Identity Metadata Federation API
+  description: 'Machine-readable SAML 2.0 identity-federation surface operated by Yale University. The Shibboleth Identity Provider at https://auth.yale.edu publishes a signed SAML 2.0 EntityDescriptor for entityID https://auth.yale.edu/idp/shibboleth, declaring OrganizationName "Yale University", shibmd:Scope "yale.edu", and SingleSignOnService endpoints for the Shibboleth 1.0, SAML 1.1 and SAML 2.0 protocols (HTTP-Redirect, HTTP-POST, HTTP-POST-SimpleSign and SOAP bindings).
+
+    The same entity is registered in the InCommon federation (registrationAuthority https://incommon.org) and is retrievable from InCommon''s per-entity metadata query service, which makes it reachable through eduGAIN interfederation as well. The host resolves inside Yale''s own AWS identity estate (shibboleth-idp-prd.inbound.iam.aws.yale.edu), so this surface is institution-operated by construction — no vendor is running it.
+
+    This is not a REST API and it was never designed as one. It is described here because it is a genuine, verified, machine-readable, institution-operated surface, and because federated identity metadata is the most consistently overlooked programmable artifact a university publishes.'
+  version: '2.0'
+  contact:
+    name: Yale University ITS — Identity and Access Management
+    url: https://its.yale.edu/
+servers:
+- url: https://auth.yale.edu
+  description: Yale Shibboleth Identity Provider (institution-operated)
+tags:
+- name: Federation
+  description: SAML 2.0 entity metadata
+paths:
+  /idp/shibboleth:
+    get:
+      tags:
+      - Federation
+      operationId: getIdpMetadata
+      summary: Retrieve Yale's SAML 2.0 identity provider metadata
+      description: Returns the signed SAML 2.0 EntityDescriptor for Yale University's Shibboleth Identity Provider, including its signing and encryption key descriptors, supported protocols, SingleSignOnService and ArtifactResolutionService endpoints, the shibmd:Scope asserted for the yale.edu namespace, and the Organization and ContactPerson blocks. Verified 200 with content-type application/xml on 2026-08-19.
+      responses:
+        '200':
+          description: SAML 2.0 EntityDescriptor document.
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: xml
+                description: urn:oasis:names:tc:SAML:2.0:metadata EntityDescriptor with entityID https://auth.yale.edu/idp/shibboleth.
+externalDocs:
+  description: SAML V2.0 Metadata specification
+  url: https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf

@@ -1,0 +1,101 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live probes on 2026-08-19 of gw.its.yale.edu, developers.yale.edu, lux.collections.yale.edu,
+  dataverse.yale.edu, collections.library.yale.edu and auth.yale.edu, plus the published access
+  policy at https://developers.yale.edu/how-info/how-do-i-get-access-apis
+description: >-
+  How authentication works across Yale University's machine-readable surfaces. Yale is unusual for
+  its cohort in running a genuinely bifurcated estate: an entirely open cultural-heritage and
+  research-data tier that needs no credential at all, and an entirely closed administrative tier
+  that needs a Yale NetID before a key can even be requested.
+authentication:
+- surface: LUX Collections Discovery API
+  base_url: https://lux.collections.yale.edu
+  x-operator: institution
+  scheme: none
+  public: true
+  evidence:
+    url: https://lux.collections.yale.edu/api/search-estimate/item?q=%7B%22text%22%3A%22gold%22%7D
+    status: 200
+  note: >-
+    Public read endpoints are unauthenticated and returned 53,387 matching objects on an anonymous
+    call. Write and admin endpoints on the MarkLogic backend are not publicly exposed.
+- surface: Yale Dataverse Repository API
+  base_url: https://dataverse.yale.edu
+  x-operator: institution
+  scheme: none
+  public: true
+  privileged_scheme: api_key
+  privileged_mechanism: X-Dataverse-key header
+  evidence:
+    url: https://dataverse.yale.edu/api/search?q=yale
+    status: 200
+  note: >-
+    Published content reads anonymously. Deposit, draft access and administrative calls require a
+    Dataverse API token issued after Yale NetID login; no token was obtained or used.
+- surface: Yale University Library Digital Collections IIIF
+  base_url: https://collections.library.yale.edu
+  x-operator: institution
+  scheme: none
+  public: true
+  evidence:
+    url: https://collections.library.yale.edu/manifests/2055095
+    status: 200
+  note: >-
+    IIIF manifests serve unauthenticated. The Blacklight JSON surface at /catalog.json and
+    /catalog/{oid}.json returned an empty HTTP 202 to every automated request tried, including
+    with a browser User-Agent and Accept: application/json — an edge bot challenge, not a 401 and
+    not a 404. Recorded as gated at the edge rather than as an authentication scheme.
+- surface: Yale Identity Federation metadata
+  base_url: https://auth.yale.edu
+  x-operator: institution
+  scheme: none
+  public: true
+  evidence:
+    url: https://auth.yale.edu/idp/shibboleth
+    status: 200
+  note: >-
+    The metadata document itself is deliberately public — that is what federation metadata is for.
+    The IdP it describes authenticates via SAML 2.0 / Shibboleth against Yale NetID, and Yale also
+    fronts legacy applications with CAS at https://secure.its.yale.edu/cas/login (200 verified).
+- surface: Yale Portal APIs (Buildings, Courses, Course Subjects, GatewayServiceMetrics)
+  base_url: https://gw.its.yale.edu
+  x-operator: institution
+  scheme: api_key
+  public: false
+  gate: Yale NetID required to reach the developer portal and register an application
+  evidence:
+  - url: https://gw.its.yale.edu/soa-gateway/courses/webservice/v3/index
+    status: 400
+    body: 'Invalid API Key'
+  - url: https://developers.yale.edu/how-info/how-do-i-get-access-apis
+    status: 200
+  note: >-
+    The gateway is LIVE and answering — it rejected an anonymous call with a specific
+    "Invalid API Key" body rather than timing out. Yale's own portal describes these as INTERNAL
+    APIs. This corrects an earlier profile of this repository that described the Courses Web
+    Service as returning "public information": the payload may be public information, but the
+    surface is not publicly accessible.
+- surface: Yale Enterprise (SOA) Services (People Hub, COA, Workday Supervisory Orgs)
+  base_url: https://gw.its.yale.edu
+  x-operator: institution
+  scheme: basic
+  public: false
+  gate: Service account, provisioned under named data-governance policies
+  evidence:
+    url: https://developers.yale.edu/api-documentation/enterprise-soa-services
+    status: 200
+  note: >-
+    Eleven services delivered by Yale's Integration Competency Center. Yale's own page calls them
+    "Private APIs that use basic authentication via a service account" with "specific request and
+    data governance policies". Documented publicly, callable only internally.
+- surface: EliScholar OAI-PMH
+  base_url: https://elischolar.library.yale.edu
+  x-operator: tenant
+  scheme: none
+  public: true
+  evidence:
+    url: https://elischolar.library.yale.edu/do/oai/?verb=Identify
+    status: 200
+  note: Harvesting is open. The endpoint is operated by Elsevier's bepress Digital Commons.
