@@ -1,20 +1,22 @@
-generated: '2026-07-15'
+generated: '2026-09-16'
 method: generated
-source: openapi/yale-lux.yaml
+source: openapi/yale-configuration-api-openapi.yml, openapi/yale-documents-api-openapi.yml,
+  openapi/yale-facets-api-openapi.yml, openapi/yale-federation-api-openapi.yml, openapi/yale-iiif-api-openapi.yml,
+  openapi/yale-info-api-openapi.yml, openapi/yale-related-api-openapi.yml, openapi/yale-search-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 6
+  operations: 13
   by_action_class:
-    connected: 6
+    connected: 13
   by_consequence:
-    read: 6
+    read: 13
   human_in_the_loop_required: 0
 operations:
-- path: /api/search/{scope}
+- path: /api/advanced-search-config
   method: get
-  operationId: search
+  operationId: advancedSearchConfig
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -22,9 +24,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/search-estimate/{scope}
+- path: /data/{type}/{id}
   method: get
-  operationId: searchEstimate
+  operationId: getDocument
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -42,6 +44,66 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /idp/shibboleth
+  method: get
+  operationId: getIdpMetadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /manifests/{oid}
+  method: get
+  operationId: getManifest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/info/version
+  method: get
+  operationId: getVersion
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/info/server
+  method: get
+  operationId: getServer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/info/metrics/datasets
+  method: get
+  operationId: getDatasetMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/metadatablocks/{name}
+  method: get
+  operationId: getMetadataBlock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/related-list/{scope}
   method: get
   operationId: relatedList
@@ -52,9 +114,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/advanced-search-config
+- path: /api/search
   method: get
-  operationId: advancedSearchConfig
+  operationId: search
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -62,9 +124,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /data/{type}/{id}
+- path: /api/search/{scope}
   method: get
-  operationId: getDocument
+  operationId: search
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/search-estimate/{scope}
+  method: get
+  operationId: searchEstimate
   x-agentic-access:
     action-class: connected
     consequence: read
