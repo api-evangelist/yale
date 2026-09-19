@@ -367,6 +367,11 @@ apis:
   - OAI-PMH
   - Research Repository
   - Scholarly Publishing
+  - Tenants
+  tags_raw:
+  - OAI-PMH
+  - Research Repository
+  - Scholarly Publishing
   - Tenant
   properties:
   - type: Documentation
@@ -387,6 +392,10 @@ apis:
   humanURL: https://courses.yale.edu/
   baseURL: https://courses.yale.edu
   tags:
+  - Course Catalog
+  - Registrar
+  - Tenants
+  tags_raw:
   - Course Catalog
   - Registrar
   - Tenant
