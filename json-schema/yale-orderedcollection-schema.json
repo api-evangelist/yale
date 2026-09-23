@@ -4,32 +4,71 @@
   "title": "LUX OrderedCollection",
   "description": "Linked Art OrderedCollection returned by the LUX search-estimate endpoint, summarizing a result set with a totalItems count.",
   "type": "object",
-  "required": ["id", "type", "totalItems"],
+  "required": [
+    "id",
+    "type",
+    "totalItems"
+  ],
   "properties": {
-    "@context": { "type": "string", "format": "uri" },
-    "id": { "type": "string", "format": "uri" },
-    "type": { "type": "string", "const": "OrderedCollection" },
-    "label": { "$ref": "#/$defs/languageMap" },
-    "summary": { "$ref": "#/$defs/languageMap" },
-    "totalItems": { "type": "integer", "minimum": 0 },
-    "first": { "$ref": "#/$defs/pageRef" },
-    "last": { "$ref": "#/$defs/pageRef" }
+    "@context": {
+      "type": "string",
+      "format": "uri"
+    },
+    "id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "type": {
+      "type": "string",
+      "const": "OrderedCollection"
+    },
+    "label": {
+      "$ref": "#/$defs/languageMap"
+    },
+    "summary": {
+      "$ref": "#/$defs/languageMap"
+    },
+    "totalItems": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "first": {
+      "$ref": "#/$defs/pageRef"
+    },
+    "last": {
+      "$ref": "#/$defs/pageRef"
+    }
   },
   "$defs": {
     "languageMap": {
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "items": { "type": "string" }
+        "items": {
+          "type": "string"
+        }
       }
     },
     "pageRef": {
       "type": "object",
-      "required": ["id"],
+      "required": [
+        "id"
+      ],
       "properties": {
-        "id": { "type": "string", "format": "uri" },
-        "type": { "type": "string" }
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        }
       }
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "derived",
+    "source": "Derived from live LUX /api/search-estimate/{scope} responses at https://lux.collections.yale.edu.",
+    "x-operator": "institution"
   }
 }

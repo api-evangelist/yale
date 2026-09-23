@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LUX Yale Collections Discovery Configuration Documents API
-  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.
+  title: LUX Yale Collections Discovery Documents API
+  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections.
   version: 1.0.0
   license:
     name: Apache 2.0

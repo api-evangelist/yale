@@ -1,0 +1,76 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  Version and state signals read directly off Yale-operated endpoints on 2026-08-19.
+description: >-
+  Versioning and lifecycle posture of Yale University's machine-readable surfaces. Yale exposes
+  real version telemetry on two of its own platforms — unusual for this cohort — but publishes no
+  deprecation policy, no changelog and no sunset headers anywhere.
+lifecycle:
+- surface: LUX Collections Discovery API
+  x-operator: institution
+  versioning: none in path
+  version_signal: runtime status endpoint
+  evidence:
+    url: https://lux.collections.yale.edu/api/tenant-status
+    status: 200
+    body: '{"prod":false,"readOnly":false,"codeVersion":"v4.0.0","dataVersion":"2026-07-11T09:20:49.929682","mlVersion":"12.0.1","databaseName":"lux-content"}'
+  note: >-
+    LUX publishes codeVersion, dataVersion and the MarkLogic version on an unauthenticated
+    endpoint, which is genuinely good operational transparency. Two things to flag honestly: the
+    endpoint reports prod:false on the public production host, and the data snapshot is dated
+    2026-07-11 — a five-week-old corpus as of this probe. The API paths themselves carry no version
+    segment, so a breaking change has nowhere to land.
+- surface: Yale Dataverse Repository API
+  x-operator: institution
+  versioning: path prefix /api/v1 (also served unprefixed at /api)
+  version_signal: version endpoint
+  evidence:
+  - url: https://dataverse.yale.edu/api/info/version
+    status: 200
+    body: '{"status":"OK","data":{"version":"6.10.1","build":"master-300d5b5"}}'
+  - url: https://dataverse.yale.edu/api/v1/info/server
+    status: 200
+  note: >-
+    The version reported is the Dataverse software release, so Yale's API lifecycle is bound to the
+    upstream project's release train rather than to a Yale-published policy. Datasets themselves
+    are versioned properly (majorVersion/minorVersion/versionState observed on search results).
+- surface: Yale Portal APIs
+  x-operator: institution
+  versioning: path segment
+  version_signal: 'v3 in the URL: /soa-gateway/courses/webservice/v3/index'
+  evidence:
+    url: https://developers.yale.edu/courseswebservicev3
+    status: 200
+  note: >-
+    Explicit major version in the path, and the portal page is named for the version, which implies
+    v1 and v2 existed. No deprecation notice, sunset date or migration guide is published for any
+    prior version.
+- surface: Yale University Library Digital Collections IIIF
+  x-operator: institution
+  versioning: specification version
+  version_signal: IIIF Presentation 3.0 context in every manifest
+  evidence:
+    url: https://collections.library.yale.edu/manifests/2055095
+    status: 200
+  note: Version is inherited from the IIIF specification, not asserted by Yale.
+- surface: Yale Identity Federation
+  x-operator: institution
+  versioning: protocol version
+  version_signal: SAML 2.0, SAML 1.1 and Shibboleth 1.0 declared in protocolSupportEnumeration
+  evidence:
+    url: https://auth.yale.edu/idp/shibboleth
+    status: 200
+  note: >-
+    Federation metadata is self-describing and carries a validity window and signature, which is
+    the strongest lifecycle contract on Yale's estate — and the one nobody thinks of as an API.
+    Yale still advertises the Shibboleth 1.0 and SAML 1.1 profiles alongside SAML 2.0.
+policy:
+  deprecation_policy: not_found
+  sunset_header: not_found
+  changelog: not_found
+  status_page: not_found
+  note: >-
+    No deprecation policy, RFC 8594 Sunset header, public changelog or status page was found for
+    any Yale-operated API surface. developers.yale.edu documents how to get access and how to test,
+    but not what happens when something goes away.

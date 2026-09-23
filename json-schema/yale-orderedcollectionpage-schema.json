@@ -4,50 +4,102 @@
   "title": "LUX OrderedCollectionPage",
   "description": "A single page of LUX search results in Linked Art JSON-LD, returned by the /api/search/{scope} endpoint.",
   "type": "object",
-  "required": ["id", "type", "orderedItems"],
+  "required": [
+    "id",
+    "type",
+    "orderedItems"
+  ],
   "properties": {
-    "@context": { "type": "string", "format": "uri" },
-    "id": { "type": "string", "format": "uri" },
-    "type": { "type": "string", "const": "OrderedCollectionPage" },
+    "@context": {
+      "type": "string",
+      "format": "uri"
+    },
+    "id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "type": {
+      "type": "string",
+      "const": "OrderedCollectionPage"
+    },
     "partOf": {
       "type": "object",
       "properties": {
-        "id": { "type": "string", "format": "uri" },
-        "type": { "type": "string" },
-        "label": { "$ref": "#/$defs/languageMap" },
-        "totalItems": { "type": "integer", "minimum": 0 }
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        },
+        "label": {
+          "$ref": "#/$defs/languageMap"
+        },
+        "totalItems": {
+          "type": "integer",
+          "minimum": 0
+        }
       }
     },
     "orderedItems": {
       "type": "array",
-      "items": { "$ref": "#/$defs/entityRef" }
+      "items": {
+        "$ref": "#/$defs/entityRef"
+      }
     },
-    "next": { "$ref": "#/$defs/pageRef" },
-    "prev": { "$ref": "#/$defs/pageRef" }
+    "next": {
+      "$ref": "#/$defs/pageRef"
+    },
+    "prev": {
+      "$ref": "#/$defs/pageRef"
+    }
   },
   "$defs": {
     "languageMap": {
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "items": { "type": "string" }
+        "items": {
+          "type": "string"
+        }
       }
     },
     "entityRef": {
       "type": "object",
-      "required": ["id", "type"],
+      "required": [
+        "id",
+        "type"
+      ],
       "properties": {
-        "id": { "type": "string", "format": "uri" },
-        "type": { "type": "string" }
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        }
       }
     },
     "pageRef": {
       "type": "object",
-      "required": ["id"],
+      "required": [
+        "id"
+      ],
       "properties": {
-        "id": { "type": "string", "format": "uri" },
-        "type": { "type": "string" }
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        }
       }
     }
+  },
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "derived",
+    "source": "Derived from live LUX /api/search/{scope} responses at https://lux.collections.yale.edu.",
+    "x-operator": "institution"
   }
 }

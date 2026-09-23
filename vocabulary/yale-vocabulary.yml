@@ -1,3 +1,7 @@
+# generated: '2026-08-19'
+# method: derived
+# source: Derived from openapi/_original/yale-lux.yaml and the LUX search grammar documented at github.com/project-lux/lux-marklogic.
+# x-operator: institution
 vocabulary:
   name: LUX Yale Collections Discovery Vocabulary
   description: >-

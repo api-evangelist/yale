@@ -1,3 +1,7 @@
+# generated: '2026-08-19'
+# method: derived
+# source: Derived from openapi/ and Yale developer-portal documentation. No published rate-limit policy was found on any Yale-operated host.
+# x-operator: institution
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits

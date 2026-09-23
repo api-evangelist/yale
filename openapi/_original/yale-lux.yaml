@@ -1,3 +1,8 @@
+# generated: '2026-08-19'
+# method: derived
+# source: Pristine pre-refine LUX contract. Derived from the open-source LUX backend API usage documentation and Postman collection at github.com/project-lux/lux-marklogic and confirmed against live responses.
+# x-operator: institution — lux.collections.yale.edu is under Yale's own registrable
+#   domain and the whole LUX stack is published by Yale's project-lux organization.
 openapi: 3.0.3
 info:
   title: LUX Yale Collections Discovery API

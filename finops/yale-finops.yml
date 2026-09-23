@@ -1,3 +1,7 @@
+# generated: '2026-08-19'
+# method: derived
+# source: Derived from plans/yale-plans-pricing.yml. Yale charges nothing for any surface catalogued here.
+# x-operator: institution
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/

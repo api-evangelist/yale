@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Yale Dataverse Repository Info API
-  description: 'Public read endpoints of Yale Dataverse (https://dataverse.yale.edu), Yale University''s institutional research-data repository. Yale self-hosts the open-source Dataverse software (version 6.10.1 at time of probe) on its own AWS infrastructure under its own registrable domain, mints its own DataCite DOI prefix (10.60600), and holds 279 published datasets across sub-dataverses including the ISPS Data Archive.
-
-    IMPORTANT PROVENANCE NOTE. The Dataverse software generates a complete machine-readable contract at https://dataverse.yale.edu/openapi. That document is titled "Dataverse API", describes "Open source research data repository software", and is byte-identical across every Dataverse installation in the world — it is the SOFTWARE PROJECT''S contract, not Yale''s engineering, and it is deliberately NOT saved into this repository. What is described here is only the subset of endpoints that were called against Yale''s deployment and observed to respond, with Yale''s own server URL. Yale operates the deployment and owns the data; the Dataverse Project (IQSS, Harvard University) authored the API design.'
+  description: Public read endpoints of Yale Dataverse (https://dataverse.yale.edu), Yale University's institutional research-data repository.
   version: 6.10.1
   contact:
     name: Yale University Library — Yale Dataverse
@@ -102,6 +100,19 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
 components:
   schemas:
+    ErrorEnvelope:
+      type: object
+      description: Standard Dataverse response envelope for a failed call.
+      required:
+      - status
+      - message
+      properties:
+        status:
+          type: string
+          enum:
+          - ERROR
+        message:
+          type: string
     StatusEnvelope:
       type: object
       description: Standard Dataverse response envelope for a successful call.
@@ -116,19 +127,6 @@ components:
         data:
           type: object
           additionalProperties: true
-    ErrorEnvelope:
-      type: object
-      description: Standard Dataverse response envelope for a failed call.
-      required:
-      - status
-      - message
-      properties:
-        status:
-          type: string
-          enum:
-          - ERROR
-        message:
-          type: string
 externalDocs:
   description: Upstream Dataverse Project API guide (the software vendor's documentation, not Yale's)
   url: https://guides.dataverse.org/en/latest/api/

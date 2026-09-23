@@ -1,3 +1,7 @@
+# generated: '2026-08-19'
+# method: derived
+# source: Derived from Yale's published access policy at https://developers.yale.edu/how-info/how-do-i-get-access-apis and the anonymous accessibility of LUX, Dataverse and IIIF.
+# x-operator: institution
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans

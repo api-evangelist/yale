@@ -1,3 +1,7 @@
+# generated: '2026-08-19'
+# method: generated
+# source: Generated from this provider's own OpenAPI conventions in openapi/.
+# x-operator: institution
 extends: []
 formats:
   - oas3

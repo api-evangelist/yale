@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LUX Yale Collections Discovery Configuration Facets API
-  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections. Entities are served as Linked Art JSON-LD. This description documents the public middle-tier endpoints exposed under https://lux.collections.yale.edu and was derived from the open-source LUX backend API usage documentation and Postman collection (github.com/project-lux/lux-marklogic) and confirmed against live responses. Only the public read endpoints are described here; write/admin endpoints from the backend custom API are intentionally omitted.
+  title: LUX Yale Collections Discovery Facets API
+  description: Public read API for LUX, Yale's cross-collection discovery platform providing unified access to more than 41 million records across Yale's museums, archives and library collections.
   version: 1.0.0
   license:
     name: Apache 2.0
@@ -58,46 +58,6 @@ paths:
                 $ref: '#/components/schemas/OrderedCollectionPage'
 components:
   schemas:
-    OrderedCollection:
-      type: object
-      description: A Linked Art OrderedCollection summarizing a result set.
-      properties:
-        '@context':
-          type: string
-          format: uri
-        id:
-          type: string
-          format: uri
-        type:
-          type: string
-          example: OrderedCollection
-        label:
-          $ref: '#/components/schemas/LanguageMap'
-        summary:
-          $ref: '#/components/schemas/LanguageMap'
-        totalItems:
-          type: integer
-        first:
-          $ref: '#/components/schemas/CollectionPageRef'
-        last:
-          $ref: '#/components/schemas/CollectionPageRef'
-      required:
-      - id
-      - type
-      - totalItems
-    EntityRef:
-      type: object
-      description: A reference to a LUX entity returned within search results.
-      properties:
-        id:
-          type: string
-          format: uri
-        type:
-          type: string
-          example: HumanMadeObject
-      required:
-      - id
-      - type
     OrderedCollectionPage:
       type: object
       description: A single page of a Linked Art OrderedCollection.
@@ -132,6 +92,19 @@ components:
         type: array
         items:
           type: string
+    EntityRef:
+      type: object
+      description: A reference to a LUX entity returned within search results.
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: HumanMadeObject
+      required:
+      - id
+      - type
     CollectionPageRef:
       type: object
       properties:
@@ -143,6 +116,33 @@ components:
           example: OrderedCollectionPage
       required:
       - id
+    OrderedCollection:
+      type: object
+      description: A Linked Art OrderedCollection summarizing a result set.
+      properties:
+        '@context':
+          type: string
+          format: uri
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: OrderedCollection
+        label:
+          $ref: '#/components/schemas/LanguageMap'
+        summary:
+          $ref: '#/components/schemas/LanguageMap'
+        totalItems:
+          type: integer
+        first:
+          $ref: '#/components/schemas/CollectionPageRef'
+        last:
+          $ref: '#/components/schemas/CollectionPageRef'
+      required:
+      - id
+      - type
+      - totalItems
   parameters:
     Scope:
       name: scope

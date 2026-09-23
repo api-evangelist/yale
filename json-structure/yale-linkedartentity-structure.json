@@ -6,19 +6,90 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "@context": { "type": "string" },
-    "id": { "type": "string" },
-    "type": { "type": "string" },
-    "_label": { "type": "string" },
-    "identified_by": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "classified_as": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "referred_to_by": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "member_of": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "equivalent": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "subject_of": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "representation": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "shows": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
-    "dimension": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+    "@context": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "_label": {
+      "type": "string"
+    },
+    "identified_by": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "classified_as": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "referred_to_by": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "member_of": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "equivalent": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "subject_of": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "representation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "shows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "dimension": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
   },
-  "required": ["id", "type"]
+  "required": [
+    "id",
+    "type"
+  ],
+  "x-provenance": {
+    "generated": "2026-08-19",
+    "method": "derived",
+    "source": "Derived from json-schema/yale-linkedartentity-schema.json.",
+    "x-operator": "institution"
+  }
 }

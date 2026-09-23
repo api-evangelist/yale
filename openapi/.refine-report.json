@@ -1,22 +1,41 @@
 {
   "provider": "yale",
   "sources": [
-    "yale-configuration-api-openapi.yml",
-    "yale-documents-api-openapi.yml",
-    "yale-facets-api-openapi.yml",
-    "yale-related-api-openapi.yml",
-    "yale-search-api-openapi.yml"
+    "_original/yale-dataverse-openapi.yml",
+    "_original/yale-digital-collections-iiif-openapi.yml",
+    "_original/yale-identity-federation-openapi.yml",
+    "_original/yale-lux.yaml"
   ],
   "outputs": [
+    "yale-info-api-openapi.yml",
+    "yale-search-api-openapi.yml",
+    "yale-iiif-api-openapi.yml",
+    "yale-federation-api-openapi.yml",
     "yale-configuration-api-openapi.yml",
     "yale-documents-api-openapi.yml",
     "yale-facets-api-openapi.yml",
-    "yale-related-api-openapi.yml",
-    "yale-search-api-openapi.yml"
+    "yale-related-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "yale-dataverse-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "yale-digital-collections-iiif-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "yale-identity-federation-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "yale-lux.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tag 'Search' spans 2 source specs (yale-dataverse-openapi.yml, yale-lux.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "yale-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-facets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-federation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-iiif-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-related-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "yale-search-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

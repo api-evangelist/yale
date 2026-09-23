@@ -1,0 +1,102 @@
+generated: '2026-08-19'
+method: probed
+source: >-
+  Error responses actually elicited from Yale-operated hosts on 2026-08-19. Every body quoted below
+  was returned to a real request; none is illustrative.
+description: >-
+  Observed error semantics across Yale University's machine-readable surfaces. Yale has no single
+  error contract — each surface carries the error idiom of the stack it is built on, and one of
+  them is currently failing.
+errors:
+- surface: LUX Collections Discovery API
+  base_url: https://lux.collections.yale.edu
+  x-operator: institution
+  media_type: application/json
+  shape: '{"statusCode": <int>, "errorMessage": <string>}'
+  observed:
+  - request: GET /api/search-estimate/item?q=gold
+    status: 400
+    body: '{"statusCode":400,"errorMessage":"Document is not JSON"}'
+    interpretation: >-
+      The q parameter must be LUX JSON Grammar or String Grammar, not a bare keyword. The message
+      is machine-stable and names the actual fault. Re-issued as
+      q={"text":"gold"} the same endpoint returned 200 with totalItems 53387.
+  assessment: >-
+    Structured, JSON, specific. Good. Not documented in any published error table, and the status
+    code is duplicated inside the body rather than described in the contract.
+- surface: Yale Dataverse Repository API
+  base_url: https://dataverse.yale.edu
+  x-operator: institution
+  media_type: application/json
+  shape: '{"status": "ERROR", "message": <string>}'
+  observed:
+  - request: 'GET /api/info/settings/:DatasetPublishPopupCustomText'
+    status: 404
+    body: '{"status":"ERROR","message":"Setting :DatasetPublishPopupCustomText not found"}'
+  - request: 'GET /api/datasets/export?exporter=schema.org&persistentId=doi:10.60600/QTNBFE'
+    status: 404
+    body: '{"status":"ERROR","message":"A dataset with the persistentId doi:10.60600/QTNBFE could not be found."}'
+  assessment: >-
+    Consistent envelope, human-readable message, correct status codes. No machine-readable error
+    code field, so callers must string-match. This is the Dataverse software's contract, inherited
+    rather than authored by Yale.
+- surface: Yale Dataverse OAI-PMH
+  base_url: https://dataverse.yale.edu
+  x-operator: institution
+  media_type: text/html
+  shape: Payara application-server error report page
+  observed:
+  - request: GET /oai?verb=Identify
+    status: 503
+    body: 'Payara Server 7.2026.2 - Error report'
+  - request: GET /oai?verb=ListMetadataFormats
+    status: 503
+    body: 'Payara Server 7.2026.2 - Error report'
+  assessment: >-
+    A LIVE DEFECT, recorded as such. The OAI-PMH harvesting endpoint is present and routed but the
+    application server is returning 503 with a raw stack-page instead of an OAI-PMH error element.
+    Harvesters cannot distinguish this from the repository being down. This is the single
+    highest-value fix on Yale's institution-operated estate.
+- surface: Yale Portal APIs gateway
+  base_url: https://gw.its.yale.edu
+  x-operator: institution
+  media_type: text/plain
+  shape: bare string
+  observed:
+  - request: GET /soa-gateway/courses/webservice/v3/index
+    status: 400
+    body: 'Invalid API Key'
+  assessment: >-
+    The gateway answers, which proves the surface is live rather than retired — but an authentication
+    failure is being reported as 400 with a plain-text body rather than 401 with a structured
+    payload and a WWW-Authenticate header. Semantically wrong status code.
+- surface: Yale University Library Digital Collections
+  base_url: https://collections.library.yale.edu
+  x-operator: institution
+  media_type: text/html
+  observed:
+  - request: GET /manifests/collections/2055095
+    status: 404
+    body: "We're sorry, but the item you've requested does not appear to exist"
+    interpretation: Honest 404 with a real body — not a soft-404.
+  - request: GET /catalog.json?q=test
+    status: 202
+    body: '(empty, zero bytes)'
+    interpretation: >-
+      An empty 202 to a JSON request is an edge bot challenge, not an application response. Retried
+      with a browser User-Agent and an explicit Accept header; unchanged. Recorded as blocked at
+      the edge — a fact about our access, not a fact about Yale's engineering.
+  - request: GET /oai?verb=Identify
+    status: 404
+    interpretation: No OAI-PMH endpoint on the digital collections host.
+- surface: Yale main web estate
+  base_url: https://www.yale.edu
+  x-operator: institution
+  observed:
+  - request: GET /llms.txt
+    status: 404
+  - request: GET /.well-known/security.txt
+    status: 404
+  assessment: >-
+    Neither an agent-facing content declaration nor an RFC 9116 security contact is published at the
+    apex. robots.txt is present (200, 2491 bytes).
