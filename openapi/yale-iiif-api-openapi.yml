@@ -67,6 +67,13 @@ components:
           items:
             type: object
             additionalProperties: true
+    LanguageMap:
+      type: object
+      description: IIIF language map — BCP 47 language tag (or "none") to an array of strings.
+      additionalProperties:
+        type: array
+        items:
+          type: string
     IIIFManifest:
       type: object
       description: A IIIF Presentation 3.0 Manifest. Yale's manifests additionally declare the IIIF Content Search 1 and navPlace extension contexts.
@@ -130,13 +137,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    LanguageMap:
-      type: object
-      description: IIIF language map — BCP 47 language tag (or "none") to an array of strings.
-      additionalProperties:
-        type: array
-        items:
-          type: string
 externalDocs:
   description: IIIF Presentation API 3.0 specification
   url: https://iiif.io/api/presentation/3.0/

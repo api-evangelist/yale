@@ -58,6 +58,13 @@ paths:
                 $ref: '#/components/schemas/OrderedCollectionPage'
 components:
   schemas:
+    LanguageMap:
+      type: object
+      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
+      additionalProperties:
+        type: array
+        items:
+          type: string
     OrderedCollectionPage:
       type: object
       description: A single page of a Linked Art OrderedCollection.
@@ -85,37 +92,6 @@ components:
       - id
       - type
       - orderedItems
-    LanguageMap:
-      type: object
-      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    EntityRef:
-      type: object
-      description: A reference to a LUX entity returned within search results.
-      properties:
-        id:
-          type: string
-          format: uri
-        type:
-          type: string
-          example: HumanMadeObject
-      required:
-      - id
-      - type
-    CollectionPageRef:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uri
-        type:
-          type: string
-          example: OrderedCollectionPage
-      required:
-      - id
     OrderedCollection:
       type: object
       description: A Linked Art OrderedCollection summarizing a result set.
@@ -143,6 +119,30 @@ components:
       - id
       - type
       - totalItems
+    EntityRef:
+      type: object
+      description: A reference to a LUX entity returned within search results.
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: HumanMadeObject
+      required:
+      - id
+      - type
+    CollectionPageRef:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+          example: OrderedCollectionPage
+      required:
+      - id
   parameters:
     Scope:
       name: scope
