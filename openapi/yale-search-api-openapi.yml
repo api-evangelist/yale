@@ -154,6 +154,19 @@ paths:
       description: LUX public production
 components:
   schemas:
+    ErrorEnvelope:
+      type: object
+      description: Standard Dataverse response envelope for a failed call.
+      required:
+      - status
+      - message
+      properties:
+        status:
+          type: string
+          enum:
+          - ERROR
+        message:
+          type: string
     SearchEnvelope:
       type: object
       required:
@@ -177,19 +190,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SearchItem'
-    ErrorEnvelope:
-      type: object
-      description: Standard Dataverse response envelope for a failed call.
-      required:
-      - status
-      - message
-      properties:
-        status:
-          type: string
-          enum:
-          - ERROR
-        message:
-          type: string
     SearchItem:
       type: object
       description: One published dataverse, dataset or file matching the query.
@@ -234,13 +234,6 @@ components:
             type: string
         fileCount:
           type: integer
-    LanguageMap:
-      type: object
-      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
-      additionalProperties:
-        type: array
-        items:
-          type: string
     OrderedCollectionPage:
       type: object
       description: A single page of a Linked Art OrderedCollection.
@@ -319,6 +312,13 @@ components:
           example: OrderedCollectionPage
       required:
       - id
+    LanguageMap:
+      type: object
+      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
+      additionalProperties:
+        type: array
+        items:
+          type: string
   parameters:
     Scope:
       name: scope

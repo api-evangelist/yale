@@ -58,13 +58,6 @@ paths:
                 $ref: '#/components/schemas/OrderedCollectionPage'
 components:
   schemas:
-    LanguageMap:
-      type: object
-      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
-      additionalProperties:
-        type: array
-        items:
-          type: string
     OrderedCollectionPage:
       type: object
       description: A single page of a Linked Art OrderedCollection.
@@ -143,6 +136,13 @@ components:
           example: OrderedCollectionPage
       required:
       - id
+    LanguageMap:
+      type: object
+      description: 'A Linked Art language map: keys are language tags and values are arrays of strings.'
+      additionalProperties:
+        type: array
+        items:
+          type: string
   parameters:
     Scope:
       name: scope
