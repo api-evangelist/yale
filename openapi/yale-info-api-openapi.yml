@@ -100,19 +100,6 @@ paths:
                 $ref: '#/components/schemas/ErrorEnvelope'
 components:
   schemas:
-    ErrorEnvelope:
-      type: object
-      description: Standard Dataverse response envelope for a failed call.
-      required:
-      - status
-      - message
-      properties:
-        status:
-          type: string
-          enum:
-          - ERROR
-        message:
-          type: string
     StatusEnvelope:
       type: object
       description: Standard Dataverse response envelope for a successful call.
@@ -127,6 +114,19 @@ components:
         data:
           type: object
           additionalProperties: true
+    ErrorEnvelope:
+      type: object
+      description: Standard Dataverse response envelope for a failed call.
+      required:
+      - status
+      - message
+      properties:
+        status:
+          type: string
+          enum:
+          - ERROR
+        message:
+          type: string
 externalDocs:
   description: Upstream Dataverse Project API guide (the software vendor's documentation, not Yale's)
   url: https://guides.dataverse.org/en/latest/api/
