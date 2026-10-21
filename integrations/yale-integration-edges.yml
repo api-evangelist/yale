@@ -51,8 +51,97 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-higher-ed.py
   first_seen: '2026-10-15'
+- partner_name: IIIF Consortium
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://iiif.io/community/consortium/members/#champion-members
+  category: image interoperability standards consortium membership
+  partner_tier: champion
+  contract_reference:
+    register: IIIF Consortium members (iiif.io/community/consortium/members/)
+    standard: IIIF (International Image Interoperability Framework)
+    spec_file: null
+    role: iiif-consortium-member
+    registered_name: Yale University
+    register_id: https://www.yale.edu/
+    matched_domain: yale.edu
+    matched_by: domain
+    signal_note: 'participation only: consortium membership funds and governs the IIIF APIs; the level is partner_tier,
+      never counted; membership is not conformance'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+  detected_by: sweep-iiif-cultural-heritage.py
+  first_seen: '2026-10-21'
+- partner_name: IIIF community implementations (awesome-iiif)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://github.com/IIIF/awesome-iiif/blob/main/implementations.md
+  category: IIIF implementation listing
+  contract_reference:
+    register: awesome-iiif community list of IIIF software and implementations (github.com/IIIF/awesome-iiif)
+    standard: IIIF (International Image Interoperability Framework)
+    spec_file: null
+    role: iiif-implementation-listed
+    registered_name: Yale Center for British Art
+    register_id: http://britishart.yale.edu/
+    matched_domain: yale.edu
+    matched_by: domain
+    listed_as:
+    - implementation site
+    listing_lines:
+    - '- [Yale Center for British Art](http://britishart.yale.edu/) provides at least 80,000 images via the IIIF
+      Image and Presentation APIs, using the Cantaloupe IIIF Server. See example [item record](http://collections.britishart.yale.edu/vufind/Record/1669236),
+      [top-level collection manifest](http://man'
+    signal_note: 'participation only: a community-curated listing (pull request, no conformance test; the list disclaims
+      endorsement), so NO certified_products; the section is context, never counted'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+  detected_by: sweep-iiif-cultural-heritage.py
+  first_seen: '2026-10-21'
+- partner_name: Linked Art community
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://linked.art/community/
+  category: cultural heritage linked data community
+  contract_reference:
+    register: Linked Art community institutions (linked.art/community/)
+    standard: Linked Art
+    spec_file: null
+    role: linked-art-institution
+    registered_name: Yale Center for British Art
+    register_id: https://linked.art/community/#institutions
+    matched_domain: yale.edu
+    matched_by: domain
+    signal_note: 'participation only: an institution in the Linked Art community (names only on the page)'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+    identity: wikidata Q6352575 'Yale Center for British Art' P856 http://britishart.yale.edu
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-iiif-cultural-heritage.py
+  first_seen: '2026-10-21'
 generated: '2026-10-15'
 method: searched
 checked:
 - https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
 - https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json
+- https://github.com/IIIF/awesome-iiif/blob/main/implementations.md
+- https://github.com/IIIF/awesome-iiif/blob/main/readme.md
+- https://iiif.io/community/consortium/members/
+- https://linked.art/community/
+source:
+- https://iiif.io/community/consortium/members/
+- https://github.com/IIIF/awesome-iiif/blob/main/readme.md
+- https://github.com/IIIF/awesome-iiif/blob/main/implementations.md
+- https://linked.art/community/
