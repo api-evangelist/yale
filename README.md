@@ -1,4 +1,4 @@
-# Yale University (yale)
+# Yale University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,120 +64,189 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Yale University is a private Ivy League research university in New Haven, Connecticut, United States,
-ranked #16 in the QS World University Rankings. This repository catalogs Yale's public developer and
-API footprint as an [APIs.json](https://apisjson.org) profile. It is maintained under the API
-Evangelist **university pipeline**, which settles *who operates* each surface before saving any
-contract — because for a university most apparent APIs are a vendor's contract running under the
-institution's name.
+Yale University is a private Ivy League research university in New Haven, Connecticut, United States, ranked #16 in the QS World University Rankings. Its programmable footprint is real but sharply bifurcated, and it is one of the few institutions in this cohort that operates its own contracts rather than only buying them. On the open side Yale runs LUX (lux.collections.yale.edu), a cross-collection discovery platform serving Linked Art JSON-LD over more than 41 million cultural-heritage records, built and published openly by Yale's own project-lux engineering organization; Yale Dataverse (dataverse.yale.edu), a self-hosted research-data repository on Yale's own AWS infrastructure minting DOIs under Yale's own DataCite prefix 10.60600; IIIF Presentation 3.0 manifests from Yale University Library Digital Collections; and a signed SAML 2.0 Shibboleth identity-provider metadata document registered in InCommon. All four were probed live and answer anonymously. On the closed side, developers.yale.edu is a genuine institution-operated developer portal documenting eleven Enterprise (SOA) services and four Portal APIs — Buildings, Courses, Course Subjects, GatewayServiceMetrics — but Yale's own pages describe these as internal and private: the SOA tier uses basic authentication via a provisioned service account, and a Portal API key can only be requested by someone holding a valid Yale NetID. The gateway at gw.its.yale.edu is live and answers an anonymous call with "Invalid API Key", so the surface exists and is simply not open. An earlier profile of this repository described the Courses Web Service as returning "public information"; that is corrected here. Two further surfaces carry Yale's name but not Yale's engineering and are recorded as tenant relationships rather than as Yale contracts: EliScholar (elischolar.library.yale.edu), whose OAI-PMH endpoint is live but whose Identify response gives an Elsevier bepress Digital Commons admin contact, and the course catalog at courses.yale.edu / catalog.yale.edu, which is a Leepfrog CourseLeaf tenancy. Yale publishes no open-data portal, no llms.txt and no security.txt.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/yale/refs/heads/main/apis.yml
-- Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=yale-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · United States · Ivy League · Research · Research Data · Research Repository · Identity Federation · Library · Cultural Heritage · Linked Data
 
-## Type
+## Yale University on APIs.io
 
-- university / Private Research University / Index / Consumer / 3rd-Party
+Everything profiled for Yale University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/yale/](https://apis.io/providers/yale/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (13)
 
-University, Higher Education, Education, United States, Ivy League, Research, Research Data,
-Research Repository, Identity Federation, Library, Cultural Heritage, Linked Data, IIIF, Course
-Catalog
+- [LUX Collections Discovery — Search API](https://apis.io/apis/yale/yale-search-api/) — Search and discovery across LUX scopes, returning Linked Art OrderedCollectionPage documents in JSON-LD. LUX is Yale's own platform: the frontend, middle…
+- [LUX Collections Discovery — Documents API](https://apis.io/apis/yale/yale-documents-api/) — Retrieves a single entity from LUX as a Linked Art JSON-LD document by type and identifier. Institution-operated on lux.collections.yale.edu.
+- [LUX Collections Discovery — Facets API](https://apis.io/apis/yale/yale-facets-api/) — Faceted aggregation over LUX search results, returning an OrderedCollectionPage of facet values and occurrence counts. Institution-operated on…
+- [LUX Collections Discovery — Related API](https://apis.io/apis/yale/yale-related-api/) — Related-entity discovery across LUX, returning an OrderedCollectionPage of documents connected to a given URI. Institution-operated on lux.collections.yale.edu.
+- [LUX Collections Discovery — Configuration API](https://apis.io/apis/yale/yale-configuration-api/) — Advanced-search configuration metadata for LUX, describing searchable terms by scope, search options and stop words. Verified 200 returning 43,502 bytes of…
+- [Yale API Portal — Portal APIs](https://apis.io/apis/yale/portal/) — Yale's institution-operated developer portal documents four Portal APIs — Buildings (name and location of Yale campus buildings), Courses, Course Subjects…
+- [Yale Courses Web Service v3](https://apis.io/apis/yale/courses/) — Returns course-offering information for a given termCode and subjectCode — titles, descriptions, instructors, meeting times, prerequisites and…
+- [Yale Enterprise (SOA) Services](https://apis.io/apis/yale/enterprise-soa/) — Eleven services delivered by Yale's Integration Competency Center covering Yale identities (People Hub — PeopleService, GetPeopleService,…
+- [EliScholar OAI-PMH (bepress Digital Commons tenancy)](https://apis.io/apis/yale/elischolar/) — EliScholar is Yale's digital platform for scholarly publishing, and its OAI-PMH endpoint is live — Identify returned protocol version 2.0 with…
+- [Yale Course Search and University Publications (CourseLeaf tenancy)](https://apis.io/apis/yale/course-catalog/) — Yale Course Search (courses.yale.edu) and the Yale University Publications bulletin (catalog.yale.edu) are the institution's public course-catalog surfaces.…
+- [Yale University Federation API](https://apis.io/apis/yale/yale-federation-api/) — SAML 2.0 entity metadata
+- [Yale University IIIF API](https://apis.io/apis/yale/yale-iiif-api/) — IIIF Presentation 3.0 manifests for digitized objects
+- [Yale University Info API](https://apis.io/apis/yale/yale-info-api/) — Deployment identity, version and metrics
 
-## Surfaces, by operator
+### Published properties
 
-Every entry in `apis.yml` carries `x-operator`. `institution` means Yale runs the thing the contract
-describes. `tenant` means the data and the identity are Yale's but a vendor operates the endpoint.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Institution-operated and publicly callable
+#### Agentic access (1)
 
-- **LUX Collections Discovery API** (Search, Documents, Facets, Related, Configuration) — Linked Art
-  JSON-LD over 41M+ cultural-heritage records at `lux.collections.yale.edu`. The whole stack is
-  Yale-built and openly published by the `project-lux` organization. Verified 200; a search for
-  `gold` returned 53,387 objects.
-  [Docs](https://github.com/project-lux/lux-marklogic/blob/main/docs/lux-backend-api-usage.md) ·
-  [Source](https://github.com/project-lux)
-- **Yale Dataverse Repository API** — self-hosted Dataverse 6.10.1 at `dataverse.yale.edu` on Yale's
-  own AWS infrastructure, 279 published datasets, DOIs minted under Yale's own DataCite prefix
-  `10.60600`. [Site](https://dataverse.yale.edu/)
-- **Digital Collections IIIF** — IIIF Presentation 3.0 manifests from `collections.library.yale.edu`,
-  operated by Yale University Library on its own infrastructure with the stack published by
-  `yalelibrary`. [Docs](https://iiif.io/guides/guides/collections.library.yale.edu/)
-- **Identity Federation metadata** — signed SAML 2.0 EntityDescriptor at
-  `auth.yale.edu/idp/shibboleth`, registered in InCommon and reachable through eduGAIN. Universities
-  publish this consistently and catalog it almost never.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Institution-operated and gated
+- [Yale Agentic Access](https://apis.io/agentic-access/yale/yale-agentic-access/)
 
-- **Yale Portal APIs** — Buildings, Courses, Course Subjects, GatewayServiceMetrics. Live; an
-  anonymous call returns HTTP 400 `Invalid API Key`. A key requires a Yale NetID.
-  [Docs](https://developers.yale.edu/api-documentation/portal-apis)
-- **Yale Courses Web Service v3** — course offerings by term and subject.
-  [Docs](https://developers.yale.edu/courseswebservicev3)
-- **Yale Enterprise (SOA) Services** — eleven ICC-delivered services (People Hub, Chart of Accounts,
-  Workday Supervisory Orgs), basic auth via provisioned service account.
-  [Docs](https://developers.yale.edu/api-documentation/enterprise-soa-services)
+#### JSON Schema (3)
 
-### Tenant — Yale's data, a vendor's contract
+The data models the API reads and writes.
 
-- **EliScholar OAI-PMH** — live OAI-PMH 2.0 at `elischolar.library.yale.edu`, but the host CNAMEs to
-  `dcyalelib.bepress.com` and Identify gives `dc-support@elsevier.com`. Elsevier bepress Digital
-  Commons. The relationship is recorded; the vendor's contract is not saved here.
-- **Yale Course Search / University Publications** — `courses.yale.edu` and `catalog.yale.edu` are
-  Leepfrog CourseLeaf tenancies.
+- [LUX Linked Art Entity](https://apis.io/schemas/yale/yale-linkedartentity/)
+- [LUX OrderedCollection](https://apis.io/schemas/yale/yale-orderedcollection/)
+- [LUX OrderedCollectionPage](https://apis.io/schemas/yale/yale-orderedcollectionpage/)
 
-## Artifacts
+#### JSON Structure (2)
 
-- [OpenAPI](openapi/) (+ [pristine pre-refine copies](openapi/_original/))
-- [Authentication](authentication/yale-authentication.yml) · [Scopes](scopes/yale-scopes.yml) ·
-  [Errors](errors/yale-errors.yml) · [Lifecycle](lifecycle/yale-lifecycle.yml)
-- [Education-regime conformance](conformance/yale-domain-standards.yml) — shibboleth, saml, datacite,
-  orcid confirmed institution-operated; oai-pmh confirmed but tenant-operated
-- [JSON Schema](json-schema/) · [JSON-LD](json-ld/) · [Vocabulary](vocabulary/) · [Rules](rules/) ·
-  [Examples](examples/) · [Collections](collections/)
-- [Plans & Pricing](plans/yale-plans-pricing.yml) · [Rate Limits](rate-limits/yale-rate-limits.yml) ·
-  [FinOps](finops/yale-finops.yml)
+Data models expressed in JSON Structure.
 
-## Timestamps
+- [Yale Linkedartentity Structure](https://apis.io/json-structure/yale/yale-linkedartentity-structure/)
+- [Yale Orderedcollectionpage Structure](https://apis.io/json-structure/yale/yale-orderedcollectionpage-structure/)
 
-- Created: 2026-06-03
-- Modified: 2026-08-19
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-- Website: https://www.yale.edu/
-- Developer Portal: https://developers.yale.edu/
-- Research Repository: https://dataverse.yale.edu/
-- Library Catalog: https://collections.library.yale.edu/
-- Course Catalog: https://courses.yale.edu/
-- Identity Federation: https://auth.yale.edu/idp/shibboleth
-- Research Computing: https://research.computing.yale.edu/
-- AI Policy: https://ai.yale.edu/
-- GitHub (Library): https://github.com/yalelibrary
-- Source Code (LUX): https://github.com/project-lux
-- LinkedIn: https://www.linkedin.com/school/yale-university/
+- [Yale Context](https://apis.io/jsonld/yale/yale-context/)
 
-## Notes
+#### Vocabulary (1)
 
-Re-profiled 2026-08-19 under the university pipeline. Every URL in this profile was probed live on
-that date and every pointer in `apis.yml` returned 200 (LinkedIn returns its standard 999 bot
-challenge, which grades live).
+The provider's domain terms, defined.
 
-Three things are recorded honestly rather than smoothed over:
+- [LUX Yale Collections Discovery Vocabulary](https://apis.io/vocabularies/yale/yale-vocabulary/)
 
-1. **Yale Dataverse's OAI-PMH endpoint is broken.** `/oai?verb=Identify` and
-   `/oai?verb=ListMetadataFormats` both return HTTP 503 with a raw Payara error page instead of an
-   OAI-PMH response. This is the one surface where Yale itself would be the OAI-PMH operator, and it
-   is not scored as conformant.
-2. **The Dataverse software's own OpenAPI is deliberately not saved here.** `dataverse.yale.edu/openapi`
-   serves a 526 KB document titled "Dataverse API" that is identical on every Dataverse installation
-   worldwide. Saving it would credit Yale with IQSS's engineering. The contract in `openapi/` describes
-   only endpoints actually called against Yale's deployment.
-3. **A prior description of the Courses Web Service as returning "public information" is corrected.**
-   The payload is public information; the surface is not public access.
+#### Examples (7)
 
-No endpoints were fabricated.
+Example requests and responses.
 
-## Maintainers
+- [Yale Dataverse Info Version Example](https://apis.io/examples/yale/yale-dataverse-info-version-example/)
+- [Yale Dataverse Metrics Datasets Example](https://apis.io/examples/yale/yale-dataverse-metrics-datasets-example/)
+- [Yale Dataverse Search Example](https://apis.io/examples/yale/yale-dataverse-search-example/)
+- [Yale Getdocument Example](https://apis.io/examples/yale/yale-getDocument-example/)
+- [Yale Iiif Manifest Example](https://apis.io/examples/yale/yale-iiif-manifest-example/)
+- [Yale Search Example](https://apis.io/examples/yale/yale-search-example/)
+- [Yale Searchestimate Example](https://apis.io/examples/yale/yale-searchEstimate-example/)
 
-- Kin Lane — kin@apievangelist.com
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [LUX Yale Collections Discovery Configuration API](https://apis.io/collections/yale/open-yale-configuration-api/)
+- [LUX Yale Collections Discovery Configuration Documents API](https://apis.io/collections/yale/open-yale-documents-api/)
+- [LUX Yale Collections Discovery Configuration Facets API](https://apis.io/collections/yale/open-yale-facets-api/)
+- [LUX Yale Collections Discovery Configuration Related API](https://apis.io/collections/yale/open-yale-related-api/)
+- [LUX Yale Collections Discovery Configuration Search API](https://apis.io/collections/yale/open-yale-search-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Yale University — jsonschema rules](https://apis.io/rules/yale/yale-jsonschema-spectral-rules/)
+- [Yale University API Rules](https://apis.io/rules/yale/yale-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Yale Authentication](https://apis.io/security/yale/yale-authentication/)
+- [Yale Domain Security](https://apis.io/security/yale/yale-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Yale Scopes](https://apis.io/scopes/yale/yale-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Yale Plans Pricing](https://apis.io/plans/yale/yale-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Yale Rate Limits](https://apis.io/rate-limits/yale/yale-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Yale Finops](https://apis.io/finops/yale/yale-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.yale.edu/)
+- [Documentation](https://developers.yale.edu/api-documentation)
+- [API reference](https://developers.yale.edu/api-documentation/portal-apis)
+- [Support](https://developers.yale.edu/frequently-asked-questions)
+- [Blog](https://news.yale.edu/news-rss)
+- [Terms of service](https://your.yale.edu/policies-procedures)
+- [Privacy policy](https://www.yale.edu/privacy-policy)
+- [GitHub](https://github.com/yalelibrary)
+
+## API Evangelist rating
+
+**Kin Score 37.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 53.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 39.5 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 28.4** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/yale/](https://apis.io/providers/yale/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Yale University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/yale/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
